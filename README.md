@@ -70,7 +70,7 @@ UI 测试默认使用本机 Google Chrome，覆盖桌面 1440 × 900、手机 39
 
 在 `site` 目录可执行 `npx playwright install chromium`，再以 `PLAYWRIGHT_BROWSER_CHANNEL=chromium npm run test:ui` 使用 Playwright 自带的 Chromium（Linux/macOS shell）。已有 Chromium 可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` 指定。
 
-`PLAYWRIGHT_BASE_URL` 可指向部署地址；指定后不启动本地服务器，测试仍只允许访问该同源地址。
+`PLAYWRIGHT_BASE_URL` 可指向部署地址；指定后不启动本地服务器，浏览器测试仍只允许访问该同源地址。此模式仍需先完成本地构建：入口静态检查读取本地 `site/dist/client/index.html`，不代替远端产物核验。
 
 当前构建通过，托管测试 4/4、UI 回归 22/22 通过。Cloudflare Pages 每次手动部署会先运行同一套构建与回归检查，失败时不会发布。Git 推送自动部署仍关闭。具体环境、覆盖边界与未完成事项见验证记录；这些检查不等于所有设备和浏览器的完整视觉验收。
 
