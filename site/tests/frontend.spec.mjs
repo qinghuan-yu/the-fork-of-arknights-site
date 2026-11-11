@@ -177,6 +177,7 @@ test('缩略图淡出与图集月份命中区域', async ({ page }, info) => {
     if (iteration % 2) await page.getByRole('button', { name: '关闭预览' }).click();
     else await page.keyboard.press('Escape');
     await expect(page.getByRole('dialog')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: '放大图片' })).toBeFocused();
     await expect(cover).toHaveAttribute('src', source);
     await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
   }
@@ -198,10 +199,17 @@ test('窄短屏主题按钮与重复弹窗可用', async ({ page }, info) => {
       const action = page.locator('.topic-action').first();
       await action.scrollIntoViewIfNeeded();
       if (info.project.name === 'mobile') expect((await action.boundingBox()).height).toBeGreaterThanOrEqual(44);
+      if (info.project.name === 'mobile') {
+        expect(await page.locator('.topic-navItem.topic-active').evaluate(element => ({
+          button: getComputedStyle(element).backgroundColor,
+          indicator: getComputedStyle(element, '::after').backgroundColor,
+        }))).toEqual({ button: 'rgba(0, 0, 0, 0)', indicator: 'rgb(24, 209, 255)' });
+      }
       await action.click();
       await expect(page.locator('dialog video')).toBeVisible();
       await page.keyboard.press('Escape');
       await expect(page.getByRole('dialog')).toHaveCount(0);
+      await expect(action).toBeFocused();
     }
     await page.locator('.topic-back').click();
     await expect(page.locator('.more-listItem').first()).toBeVisible();

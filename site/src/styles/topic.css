@@ -498,11 +498,20 @@ body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
     background: transparent;
   }
 
+  .topic-container .topic-navContainer .topic-navItem.topic-active,
+  .topic-container .topic-navContainer .topic-navItem:hover {
+    background: transparent;
+  }
+
   .topic-container .topic-navContainer .topic-navItem::after {
     content: '';
     position: absolute;
     inset: 20px 0;
     background: #ababab;
+  }
+
+  .topic-container .topic-navContainer .topic-navItem:hover::after {
+    background: #fff;
   }
 
   .topic-container .topic-navContainer .topic-navItem.topic-active::after {
