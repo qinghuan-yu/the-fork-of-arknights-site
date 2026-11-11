@@ -1,0 +1,21 @@
+/* 清理服务入口后收紧导航，保留原有展示区和响应式布局。 */
+._6066ead1 ._149a6e98 {
+  width: 5.75rem;
+  padding-left: 0;
+}
+
+._3c630746 ._0882dfb6 ._b6f1b9e5 {
+  cursor: default;
+}
+
+.local-footer {
+  padding: 40px 24px;
+  background: #080808;
+  color: #888;
+  font: 12px/1.8 sans-serif;
+  text-align: center;
+}
+
+.local-footer p {
+  margin: 4px 0;
+}

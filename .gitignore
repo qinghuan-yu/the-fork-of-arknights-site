@@ -1,0 +1,15 @@
+site/node_modules/
+.capture/node_modules/
+.capture/*-out.log
+.capture/*-error.log
+*.log
+site/dist/
+**/__pycache__/
+.capture/evidence/*
+!.capture/evidence/api-snapshots.json
+!.capture/evidence/frontend-regression.json
+.capture/github-repository.py
+.capture/inspect-components.mjs
+.env
+.env.*
+!.env.example

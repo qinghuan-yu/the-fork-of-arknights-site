@@ -1,0 +1,346 @@
+{
+  "checks": [
+    {
+      "name": "desktop home: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop home: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop home: no missing images",
+      "passed": true
+    },
+    {
+      "name": "home download and QR removed",
+      "passed": true
+    },
+    {
+      "name": "header only sound button",
+      "passed": true
+    },
+    {
+      "name": "music toggle",
+      "passed": true
+    },
+    {
+      "name": "home background video",
+      "passed": true
+    },
+    {
+      "name": "navigation information",
+      "passed": true
+    },
+    {
+      "name": "desktop information: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop information: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop information: no missing images",
+      "passed": true
+    },
+    {
+      "name": "navigation operator",
+      "passed": true
+    },
+    {
+      "name": "desktop operator: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop operator: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop operator: no missing images",
+      "passed": true
+    },
+    {
+      "name": "navigation world",
+      "passed": true
+    },
+    {
+      "name": "desktop world: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop world: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop world: no missing images",
+      "passed": true
+    },
+    {
+      "name": "navigation media",
+      "passed": true
+    },
+    {
+      "name": "desktop media: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop media: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop media: no missing images",
+      "passed": true
+    },
+    {
+      "name": "navigation more",
+      "passed": true
+    },
+    {
+      "name": "desktop more: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "desktop more: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "desktop more: no missing images",
+      "passed": true
+    },
+    {
+      "name": "two local more cards",
+      "passed": true
+    },
+    {
+      "name": "集成战略: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "集成战略: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "集成战略: no missing images",
+      "passed": true
+    },
+    {
+      "name": "生息演算: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "生息演算: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "生息演算: no missing images",
+      "passed": true
+    },
+    {
+      "name": "news category 公告",
+      "passed": true
+    },
+    {
+      "name": "news category 活动",
+      "passed": true
+    },
+    {
+      "name": "news category 新闻",
+      "passed": true
+    },
+    {
+      "name": "news and banners are static",
+      "passed": true
+    },
+    {
+      "name": "operator 阿米娅",
+      "passed": true
+    },
+    {
+      "name": "operator 陈",
+      "passed": true
+    },
+    {
+      "name": "operator 德克萨斯",
+      "passed": true
+    },
+    {
+      "name": "operator 能天使",
+      "passed": true
+    },
+    {
+      "name": "operator 白面鸮",
+      "passed": true
+    },
+    {
+      "name": "operator 凯尔希",
+      "passed": true
+    },
+    {
+      "name": "world detail and particles",
+      "passed": true
+    },
+    {
+      "name": "only local media options",
+      "passed": true
+    },
+    {
+      "name": "GALLERY: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "GALLERY: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "GALLERY: no missing images",
+      "passed": true
+    },
+    {
+      "name": "VIDEO: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "VIDEO: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "VIDEO: no missing images",
+      "passed": true
+    },
+    {
+      "name": "local looping preview",
+      "passed": true
+    },
+    {
+      "name": "mobile menu: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile menu: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile menu: no missing images",
+      "passed": true
+    },
+    {
+      "name": "six mobile navigation links",
+      "passed": true
+    },
+    {
+      "name": "mobile index: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile index: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile index: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile index: no overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile information: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile information: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile information: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile information: no overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile operator: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile operator: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile operator: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile operator: no overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile world: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile world: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile world: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile world: no overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile media: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile media: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile media: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile media: no overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile more: only local navigation",
+      "passed": true
+    },
+    {
+      "name": "mobile more: removed service UI",
+      "passed": true
+    },
+    {
+      "name": "mobile more: no missing images",
+      "passed": true
+    },
+    {
+      "name": "mobile more: no overflow",
+      "passed": true
+    },
+    {
+      "name": "no external requests",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no business API requests",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "no popup windows",
+      "passed": true
+    }
+  ],
+  "errors": [],
+  "failed": [],
+  "external": [],
+  "api": []
+}
