@@ -1,0 +1,80 @@
+[
+  {
+    "key": "GALLERY",
+    "activeImage": "/assets/images/gallery_active.d45cfc72.png",
+    "activeImageStyles": {
+      "width": 282,
+      "height": 425,
+      "left": 185,
+      "top": 5
+    },
+    "logo": "/assets/images/logo_gallery.08a04a01.png",
+    "logoStyles": {
+      "width": 0,
+      "left": 250,
+      "top": 240
+    },
+    "titleStyles": {
+      "left": 204,
+      "top": 54
+    },
+    "titleStylesPortrait": {
+      "left": 120,
+      "top": -20
+    },
+    "hotArea": {
+      "left": 100,
+      "top": 98,
+      "width": 173,
+      "height": 320
+    },
+    "blockOne": {
+      "left": -12,
+      "top": 0
+    },
+    "blockTwo": {
+      "left": 68,
+      "top": 52
+    },
+    "view": 1
+  },
+  {
+    "key": "VIDEO",
+    "activeImage": "/assets/images/video_active.693c91f3.png",
+    "activeImageStyles": {
+      "width": 488,
+      "height": 318,
+      "left": 556,
+      "top": 510
+    },
+    "logo": "/assets/images/logo_video.c1de0303.png",
+    "logoStyles": {
+      "width": 66,
+      "left": 332,
+      "top": 204
+    },
+    "titleStyles": {
+      "left": 446,
+      "top": 146
+    },
+    "titleStylesPortrait": {
+      "left": 326,
+      "top": 244
+    },
+    "blockOne": {
+      "left": 96,
+      "top": -24
+    },
+    "blockTwo": {
+      "left": 142,
+      "top": 20
+    },
+    "hotArea": {
+      "left": 64,
+      "top": 38,
+      "width": 360,
+      "height": 268
+    },
+    "view": 2
+  }
+]

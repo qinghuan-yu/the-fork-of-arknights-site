@@ -1,96 +1,71 @@
 # the fork of arknights site
 
-明日方舟官网的纯前端本地展示版本。保留页面动画与本地交互，已移除下载、账号、充值及站外服务入口。
+明日方舟官网的纯前端本地展示项目，现已迁移为 React + Vite 源码。页面由独立组件、本地 JSON 数据和静态素材组成，不再加载原站的 Next.js 编译包或业务 SDK。
 
-原站：<https://ak.hypergryph.com/>
+**当前是源码拆分的阶段性检查点，尚未完成全部视觉验收。** 接手开发先阅读 [HANDOFF.md](HANDOFF.md)，验证结果与已知问题见 [design-qa.md](design-qa.md)。
 
-页面和内容快照日期：2026-11-11。
+原站：<https://ak.hypergryph.com/>。页面内容快照日期：2026-11-11。
 
-## 打开页面
+## 启动开发
 
-需要 Node.js 20.19+ 或 22.12+。首次从仓库克隆后，在根目录执行：
+需要 Node.js 20.19+ 或 22.12+（本次使用 Node.js 24）和 npm。在仓库根目录执行：
 
-```powershell
+```sh
 npm ci --prefix site
+npm run dev --prefix site
+```
+
+打开 <http://127.0.0.1:4173/>。修改 `site/src/` 即可开发，无需 Python、采集脚本、原站服务或环境密钥。
+
+生产构建与本地预览：
+
+```sh
 npm run build --prefix site
 node server.mjs
 ```
 
-构建后可双击当前文件夹的 `start.cmd`，浏览器会打开 <http://127.0.0.1:4173/>。运行期间保留启动窗口；关闭窗口即可停止。本地已有构建结果时，无需重复安装依赖。
-
-若端口已被占用，可以在 PowerShell 中运行：
-
-```powershell
-$env:PORT = '4174'
-node server.mjs
-```
-
-然后打开 <http://127.0.0.1:4174/>。不要直接双击 `index.html`，浏览器的本地文件限制会影响字体、视频和脚本加载。
-
-## 已保留的内容
-
-- 首页背景视频、顶部导航、背景音乐开关。
-- 情报轮播及最新、公告、活动、新闻分类。
-- 六名干员的立绘、切换、精英化展示和语音。
-- 六项世界观设定、粒子背景、展开与返回。
-- 泰拉万象的本地图集和视频目录。
-- 集成战略、生息演算等更多内容展示。
-- 桌面布局、手机布局和手机导航菜单。
-
-首页背景视频、图片、字体、样式、脚本和角色语音均在本地。按本次选择，20 部大型宣传片、玩法视频以一个 12 秒本地循环片段占位，播放器标有“循环演示”，原封面和目录保留。主要展示页面可离线运行。
-
-已移除 PC／手机／模拟器下载、下载二维码、适龄说明入口、登录注册、充值、客服、社交平台、活动官网、动画和漫画站点入口。新闻和轮播图保留静态内容及分类／滑动交互，不再跳转新闻详情。媒体页只保留本地图集和视频入口。
-
-新闻和目录是采集当天的快照，不会自动更新。页面仅请求同源静态资源，不依赖业务后端；本地 Node 服务仅用于提供文件，构建产物也可部署到普通静态托管服务。
+构建后也可在 Windows 双击 `start.cmd`。开发服务器和静态预览共用 4173 端口，请勿同时启动。不要直接双击 `index.html`。
 
 ## 文件结构
 
 | 路径 | 用途 |
 | --- | --- |
-| `start.cmd` | Windows 双击启动入口 |
-| `server.mjs` | 仅监听本机的静态服务，支持视频 Range 请求 |
-| `site/index.html` | 本地化后的官网页面入口 |
-| `site/src/local-runtime.js` | 不联网的旧 SDK 兼容与视频占位适配 |
-| `site/src/frontend-only.css` | 清理服务入口后的布局调整 |
-| `site/src/footer.html` | 无外链的静态素材署名 |
-| `site/public/vendor/` | 官网公开前端脚本、样式、字体、图片、语音和首页视频 |
-| `site/public/data/videos.json` | 视频目录的静态 JSON 数据 |
-| `site/public/local-preview.mp4` | 12 秒循环演示视频 |
-| `site/dist/client/` | 可直接运行的构建结果 |
-| `source.html` | 原始官网 HTML 快照 |
-| `.capture/assemble.py` | 从原始素材组装本地页面，同时清理首屏 HTML |
-| `.capture/frontend-only.mjs` | 按组件修改已编译代码，移除服务入口和外部跳转 |
-| `.capture/assets/` | 重建所需的原始公开资源；保留输入以便重复组装 |
-| `.capture/frontend-regression.mjs` | 桌面与手机纯前端回归检查 |
-| `design-qa.md` | 页面对照与功能验证记录 |
+| `site/index.html`、`site/src/main.jsx` | Vite 页面入口与 React 挂载 |
+| `site/src/App.jsx` | 六个主分区、导航状态与页面装饰 |
+| `site/src/sections/` | 首页、情报、干员、设定、媒体、更多内容 |
+| `site/src/components/` | 导航、图集、视频、主题、弹窗、语音、粒子画布 |
+| `site/src/hooks/` | 分区导航、响应式状态、HLS 视频加载 |
+| `site/src/animations/ParticleScene.js` | Three.js 粒子渲染、模型变形与指针交互 |
+| `site/src/data/` | 新闻、角色、世界观、图集、视频和主题数据 |
+| `site/src/styles/`、`site/src/styles.css` | 分区样式与全局布局 |
+| `site/public/assets/` | 图片、字体、音频、视频和粒子模型 |
+| `site/tests/` | 页面测试与静态托管适配测试 |
+| `server.mjs`、`start.cmd` | 本机静态预览与 Windows 启动入口 |
+| `site/worker/`、`site/.openai/`、`site/scripts/` | 可选的 Sites 静态托管适配，不是业务后端 |
 
-本项目使用公开交付的前端资源进行本地化，保留原版结构和效果。`vendor` 中的 JavaScript 是原站编译后的文件，目前尚未重写为常规的 React 组件源码。`site/src/App.jsx` 等模板文件不是当前页面的渲染入口。可以在此基础上逐步拆出导航、首页、情报、干员、设定和媒体组件。
+依赖清单和锁文件纳入仓库；`node_modules/`、`site/dist/`、截图、日志及本地采集档案不提交。运行所需媒体素材直接包含在仓库中。
 
-## 开发和重建
+## 展示功能
 
-```powershell
-cd site
-npm install
-npm run dev
+- 首页背景视频、背景音乐、桌面导航、手机菜单与分区切换。
+- 新闻轮播与分类，六名干员的立绘、精英化和语音。
+- 六项世界观及粒子模型切换，本地图集、视频目录和主题展示。
+
+已移除下载、登录注册、充值、客服、社交平台及其他站外服务入口。页面只读取同源静态文件，不依赖业务 API。新闻和目录不会自动更新。
+
+首页横竖屏背景视频为本地 HLS；20 部大型宣传片和玩法视频使用一个 12 秒本地循环片段占位，保留封面和目录。图片、字体、音频和粒子模型均在本地。
+
+## 验证
+
+先完成构建，再执行：
+
+```sh
+npm run test:sites --prefix site
+npm run test:ui --prefix site
 ```
 
-修改 `site/src/local-runtime.js`、`frontend-only.css`、`footer.html` 或组件清理逻辑后，在根目录重建：
+UI 测试使用本机 Google Chrome，覆盖桌面 1440 × 900 与手机 390 × 844。测试会启动静态服务，或复用 4173 端口已有服务；测试前须确保该端口提供当前构建。无 Chrome 时需要安装浏览器或调整 `site/playwright.config.mjs`。
 
-```powershell
-python -m pip install -r .capture/requirements.txt
-python -X utf8 .capture/assemble.py
-npm run build --prefix site
-```
+当前构建通过，托管测试 4/4 通过，UI 测试 17/18 通过。手机主题按钮遮挡及图集等视觉问题尚待修复，详见交接文档。旧版本“84 项检查通过”不代表本次源码重写已全部通过。
 
-组装脚本只读取已采集资源。占位视频已纳入仓库；仅在重新生成该视频时需要 FFmpeg。运行页面不需要 Python。
-
-回归检查使用本机 Chrome，先启动本地服务，再运行：
-
-```powershell
-npm ci --prefix .capture
-node .capture/frontend-regression.mjs
-```
-
-依赖目录、构建产物、临时截图和日志不纳入版本控制。
-
-原站图像、音视频及品牌素材的权利归原权利人所有。
+原站图像、字体、音视频及品牌素材的权利归原权利人所有。

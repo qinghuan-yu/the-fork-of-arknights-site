@@ -1,0 +1,406 @@
+/* topic 分区样式，类名已恢复为可维护的语义名称。 */
+.topic-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 7;
+  background-color: #000;
+  transition: opacity .6s,visibility .6s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (orientation:portrait) {
+  .topic-container {
+    background-color: #121212;
+    height: 71.875rem;
+  }
+}
+
+.topic-container .topic-bg {
+  transition: transform .6s;
+  transform: scale(1.1);
+}
+
+.topic-container.topic-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.topic-container.topic-active .topic-bg {
+  transform: scale(1);
+}
+
+.topic-container .topic-bgWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-bgWrapper {
+    top: 9.375rem;
+    height: 62.5rem;
+  }
+  .topic-container .topic-bgWrapper:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 15rem;
+    background-image: linear-gradient(0deg,transparent,#121212 7.5rem,#121212);
+    background-size: auto;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
+.topic-container .topic-bg {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-bg {
+    background-position: bottom;
+  }
+}
+
+.topic-container .topic-bgMask {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
+  display: block;
+  mix-blend-mode: overlay;
+}
+
+@media (orientation:portrait) {
+  body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
+    mix-blend-mode: multiply;
+    background-image: url("/assets/images/mask.2a894589.png");
+    background-size: 100% auto;
+    background-position: bottom;
+  }
+}
+
+.topic-container .topic-tabList {
+  position: absolute;
+  right: 0;
+  bottom: 14.375rem;
+  width: 14.75rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-tabList {
+    left: 0;
+    top: 9.375rem;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    right: unset;
+    bottom: unset;
+    padding-left: 1.5rem;
+    padding-right: 7.25rem;
+  }
+  .topic-container .topic-tabList .topic-_tabList {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid #565656;
+  }
+}
+
+.topic-container .topic-tabList .topic-tabItem {
+  flex: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 9.375rem;
+  height: 1.5rem;
+  padding: 0 .5rem;
+  transition: background-color .3s,color .3s;
+  background-color: #000;
+  color: #fff;
+}
+
+.topic-container .topic-tabList .topic-tabItem+.topic-tabItem {
+  margin-top: 2rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-tabList .topic-tabItem+.topic-tabItem {
+    margin-top: 0;
+    margin-left: 2.5rem;
+  }
+  .topic-container .topic-tabList .topic-tabItem {
+    width: unset;
+    padding-right: .75rem;
+  }
+}
+
+@media (any-hover:hover) {
+  .topic-container .topic-tabList .topic-tabItem:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
+.topic-container .topic-tabList .topic-tabItem.topic-active {
+  background-color: #18d1ff;
+  color: #000;
+}
+
+.topic-container .topic-tabList .topic-tabItem .topic-text {
+  font-weight: 700;
+  font-size: .875rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-tabList .topic-tabItem .topic-text {
+    font-size: 1.125rem;
+    margin-right: .5rem;
+  }
+}
+
+.topic-container .topic-tabList .topic-tabItem .topic-icon {
+  width: .5rem;
+}
+
+.topic-container .topic-floatingText {
+  pointer-events: none;
+  position: absolute;
+  bottom: 11.25rem;
+  transform: translateY(100%);
+  left: 8.375rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  height: .95em;
+  font-family: Oswald-Medium;
+  font-size: 7rem;
+  letter-spacing: -.05em;
+  color: #242424;
+}
+
+.topic-container .topic-topicInfo {
+  position: absolute;
+  left: 9rem;
+  bottom: 9.5rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo {
+    left: 1.875rem;
+    bottom: 3rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-subtitle {
+  white-space: pre-wrap;
+  font-family: Novecentosanswide-Bold;
+  font-size: 3.125rem;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(0,0,0,.5);
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-subtitle {
+    font-size: 2.5rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-title {
+  margin-top: .5rem;
+  font-weight: 700;
+  font-size: 3.75rem;
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(0,0,0,.5);
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-title {
+    font-size: 3rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-titleLine {
+  margin-top: 1.5rem;
+  width: 15rem;
+  height: .625rem;
+  background-color: #18d1ff;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-titleLine {
+    height: .375rem;
+    margin-top: 1.25rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actions {
+  margin-top: 4rem;
+  display: flex;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actions {
+    margin-top: 2.5rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action {
+  cursor: pointer;
+  flex: none;
+  display: flex;
+  position: relative;
+  line-height: 1;
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action>* {
+  flex: none;
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action+.topic-action {
+  margin-left: 2.25rem;
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action .topic-flag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: .625rem;
+  opacity: .3;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-flag {
+    height: .875rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action .topic-subText {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-family: Bender-Bold;
+  font-size: .625rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-subText {
+    font-size: .875rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action .topic-primaryText {
+  position: relative;
+  margin-right: .5rem;
+  font-family: SourceHanSans-Bold;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-primaryText {
+    font-size: 1.25rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actions .topic-action .topic-icon {
+  position: relative;
+  width: 1.75rem;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-icon {
+    width: 2.5rem;
+  }
+}
+
+.topic-container .topic-topicInfo .topic-actionsLine {
+  margin-top: 2rem;
+  width: 7.75rem;
+  height: .125rem;
+  background-color: #fff;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-topicInfo .topic-actionsLine {
+    margin-top: 1.75rem;
+    height: 1px;
+  }
+}
+
+.topic-container .topic-navContainer {
+  position: absolute;
+  right: 0;
+  bottom: 10.75rem;
+  width: 43.75rem;
+  height: .5rem;
+  display: flex;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-navContainer {
+    width: 100%;
+    bottom: 0;
+    padding-right: 5.75rem;
+  }
+}
+
+.topic-container .topic-navContainer .topic-navItem {
+  flex: 1 1;
+  cursor: pointer;
+  transition: background-color .3s;
+  background-color: #ababab;
+}
+
+@media (any-hover:hover) {
+  .topic-container .topic-navContainer .topic-navItem:hover {
+    background-color: #fff;
+  }
+}
+
+.topic-container .topic-navContainer .topic-navItem.topic-active {
+  background-color: #18d1ff;
+}
+
+.topic-container .topic-navContainer:before {
+  content: "";
+  pointer-events: none;
+  display: block;
+  width: 20rem;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  right: 100%;
+  background-image: linear-gradient(90deg,transparent,#fff);
+  opacity: .5;
+}
+
+@media (orientation:portrait) {
+  .topic-container .topic-navContainer:before {
+    content: none;
+  }
+}

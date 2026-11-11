@@ -1,0 +1,71 @@
+@font-face {
+  font-family: Bender-Regular;
+  src: url("/assets/fonts/Bender-Regular.6950ba72.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Bender-Bold;
+  src: url("/assets/fonts/Bender-Bold.b4c7998a.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Oswald-Medium;
+  src: url("/assets/fonts/Oswald-Medium.99836e81.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Oswald-DemiBold;
+  src: url("/assets/fonts/Oswald-DemiBold.633163ca.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Novecentosanswide-Medium;
+  src: url("/assets/fonts/Novecentosanswide-Medium.7a5c757a.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Novecentosanswide-DemiBold;
+  src: url("/assets/fonts/Novecentosanswide-DemiBold.e7b6abe4.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Novecentosanswide-Bold;
+  src: url("/assets/fonts/Novecentosanswide-Bold.9c78a9fd.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Novecentosanswide-UltraBold;
+  src: url("/assets/fonts/Novecentosanswide-UltraBold.e5e00ac9.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SourceHanSans-Regular;
+  src: url("/assets/fonts/SourceHanSansSC-Regular.850c7fae.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SourceHanSans-Bold;
+  src: url("/assets/fonts/SourceHanSansSC-Bold.5255c6b6.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SourceHanSans-Heavy;
+  src: url("/assets/fonts/SourceHanSansSC-Heavy.a894e685.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: SourceHanSans-Medium;
+  src: url("/assets/fonts/SourceHanSansSC-Medium.ccb4ab24.woff2") format("woff2");
+  font-display: swap;
+}

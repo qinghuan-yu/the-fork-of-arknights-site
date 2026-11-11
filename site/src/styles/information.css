@@ -1,0 +1,470 @@
+/* information 分区样式，类名已恢复为可维护的语义名称。 */
+.information-container {
+  top: 0;
+  height: 100%;
+}
+
+.information-container,.information-container .information-bottomShadow {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.information-container .information-bottomShadow {
+  display: none;
+  bottom: 0;
+  height: 12rem;
+  background-image: linear-gradient(0deg,#000,transparent);
+}
+
+@media (orientation:portrait) {
+  .information-container .information-bottomShadow {
+    display: block;
+  }
+}
+
+.information-container .information-bannerContainer {
+  position: absolute;
+  top: 9.5rem;
+  right: 14.75rem;
+  width: 83.125rem;
+  height: 46.875rem;
+  -webkit-mask: linear-gradient(90deg,hsla(0,0%,100%,0),#fff 20%);
+  mask: linear-gradient(90deg,hsla(0,0%,100%,0),#fff 20%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-bannerContainer {
+    position: static;
+    margin-top: 9.375rem;
+    padding-right: 5.75rem;
+    width: unset;
+    height: 24.125rem;
+    -webkit-mask: unset;
+    mask: unset;
+  }
+}
+
+.information-container .information-bannerContainer .information-swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.information-container .information-bannerContainer .information-imgWrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.information-container .information-bannerContainer .information-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.information-container .information-bannerScrollBarContainer {
+  position: absolute;
+  z-index: 4;
+  top: 56.375rem;
+  right: 0;
+  width: 61rem;
+  height: .5rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-bannerScrollBarContainer {
+    width: 100%;
+    height: .375rem;
+    padding-right: 5.75rem;
+    display: flex;
+    top: 33.125rem;
+  }
+}
+
+.information-container .information-bannerScrollBarContainer .information-bannerScrollBar {
+  width: 100%;
+  height: 100%;
+  background-color: #ababab;
+}
+
+.information-container .information-bannerScrollBarContainer .information-bannerScrollBar .swiper-scrollbar-drag {
+  position: relative;
+  background-color: #18d1ff;
+  border-radius: 0;
+}
+
+.information-container .information-bannerScrollBarContainer:before {
+  position: absolute;
+  background-image: linear-gradient(90deg,hsla(0,0%,67%,0),hsla(0,0%,67%,.7));
+  height: 1px;
+  width: 12rem;
+  top: 0;
+  right: 100%;
+}
+
+@media (orientation:landscape) {
+  .information-container .information-bannerScrollBarContainer:before {
+    content: "";
+  }
+}
+
+.information-container .information-main {
+  position: absolute;
+  left: 0;
+  top: 9.5rem;
+  width: 34.375rem;
+  height: 46.75rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main {
+    position: static;
+    width: unset;
+    height: unset;
+    padding-right: 5.75rem;
+  }
+}
+
+.information-container .information-main .information-bgBlock {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+  mix-blend-mode: overlay;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-bgBlock {
+    display: none;
+  }
+}
+
+.information-container .information-main .information-mainMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-mainMask {
+    display: none;
+  }
+}
+
+.information-container .information-main .information-articlesContainer {
+  height: 100%;
+  position: relative;
+  padding-top: 2.5rem;
+  padding-left: 3.875rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer {
+    height: unset;
+    padding-top: 1.25rem;
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList {
+  display: flex;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-tabList {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-top: 1px solid #565656;
+    border-bottom: 1px solid #403c3b;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList .information-tabItem {
+  cursor: pointer;
+  font-family: SourceHanSans-Bold;
+  display: flex;
+  align-items: center;
+  width: 5.625rem;
+  height: 1.25em;
+  padding: 0 .5rem 0 .125rem;
+  margin-right: 1rem;
+  transition: color .3s,background-color .3s;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-tabList .information-tabItem {
+    font-size: 1.25rem;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList .information-tabItem .information-icon {
+  flex: none;
+  width: .4375rem;
+  margin-left: auto;
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList .information-tabItem:hover {
+  color: #18d1ff;
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList .information-tabItem.information-active {
+  color: #000;
+  background-color: #18d1ff;
+}
+
+.information-container .information-main .information-articlesContainer .information-tabList .information-tabItem.information-active .information-icon {
+  opacity: 1;
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList {
+  margin-top: .5rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-newsList {
+    margin-top: 0;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList .information-newsItem {
+  cursor: pointer;
+  width: 22.5rem;
+  height: 6rem;
+  border-bottom: 1px solid hsla(0,0%,100%,.3);
+  display: flex;
+  align-items: center;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-newsList .information-newsItem {
+    width: unset;
+    height: 7.125rem;
+    border-color: #403c3b;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-cate {
+  white-space: nowrap;
+  font-family: SourceHanSans-Bold;
+  font-size: 1.125rem;
+  color: #18d1ff;
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo {
+  width: 17.5rem;
+  margin-left: auto;
+  color: #d2d2d2;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo {
+    flex: auto;
+    width: unset;
+    margin-left: 2.75rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo .information-date {
+  white-space: nowrap;
+  font-family: Bender-Regular;
+  letter-spacing: 1px;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo .information-date {
+    font-size: 1rem;
+    margin-left: 5rem;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo .information-newsTitle {
+  margin-top: .125rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  max-height: 2.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-newsList .information-newsItem .information-newsInfo .information-newsTitle {
+    font-size: 1.25rem;
+    max-height: 3.4em;
+    line-height: 1.6;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-floatingText {
+  position: absolute;
+  top: 100%;
+  left: 9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  height: .95em;
+  font-family: Oswald-Medium;
+  font-size: 7rem;
+  letter-spacing: -.05em;
+  color: #242424;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-floatingText {
+    display: none;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-currentBannerInfo {
+  position: absolute;
+  left: 3.875rem;
+  bottom: -1.875rem;
+  width: 26.5rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-currentBannerInfo {
+    position: static;
+    width: unset;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-date {
+  font-family: Bender-Regular;
+  letter-spacing: 1px;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-date {
+    margin-top: 1rem;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  max-height: 2.8em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-title {
+    font-size: 2.5rem;
+    -webkit-line-clamp: 1;
+    max-height: 1.4em;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-subtitle {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-subtitle {
+    display: none;
+  }
+}
+
+.information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-comment {
+  font-family: Novecentosanswide-Medium;
+  line-height: 1.25rem;
+  font-size: .75rem;
+  letter-spacing: 2px;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-main .information-articlesContainer .information-currentBannerInfo .information-comment {
+    font-size: .875rem;
+  }
+}
+
+.information-container .information-globalMask1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: linear-gradient(0deg,#000 5rem,transparent 20rem);
+  background-size: 100% 100%;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-globalMask1 {
+    display: none;
+  }
+}
+
+.information-container .information-globalMask2 {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-size: 100% 100%;
+}
+
+@media (orientation:portrait) {
+  .information-container .information-globalMask2 {
+    display: none;
+  }
+}
+
+body[data-mix-blend-mode="1"] .information-container .information-main .information-mainMask {
+  background-image: url("/assets/images/list_bg_texture.9bb75037.png");
+  background-size: cover;
+  background-position: 0 0;
+  mix-blend-mode: difference;
+}
+
+body[data-mix-blend-mode="1"] .information-container .information-globalMask2 {
+  display: block;
+  mix-blend-mode: overlay;
+}
+
+@media (orientation:portrait) {
+  body[data-mix-blend-mode="1"] .information-container .information-globalMask2 {
+    display: none;
+  }
+}
+
+.information-container .information-bannerContainer,.information-container .information-bannerScrollBarContainer,.information-container .information-main .information-articlesContainer {
+  transition: visibility 1s,opacity 1s;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.information-container.information-active .information-bannerContainer,.information-container.information-active .information-bannerScrollBarContainer,.information-container.information-active .information-main .information-articlesContainer {
+  visibility: visible;
+  opacity: 1;
+}

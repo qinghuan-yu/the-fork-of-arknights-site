@@ -1,0 +1,82 @@
+/* navigation 分区样式，类名已恢复为可维护的语义名称。 */
+.navigation-container {
+  display: flex;
+}
+
+.navigation-container .navigation-item {
+  margin: 0 2.5rem;
+  cursor: pointer;
+  transition: color .3s;
+}
+
+.navigation-container .navigation-item .navigation-subtitle {
+  font-family: Oswald-Medium;
+  font-size: 1.375rem;
+}
+
+.navigation-container .navigation-item .navigation-title {
+  font-family: SourceHanSans-Medium;
+  font-size: .875rem;
+}
+
+.navigation-container .navigation-item.navigation-active {
+  color: #19d1ff;
+}
+
+@media (any-hover:hover) {
+  .navigation-container .navigation-item:hover {
+    color: #19d1ff;
+  }
+}
+
+.navigation-menuNav .navigation-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 7.5rem;
+  border-bottom: 1px solid hsla(0,0%,100%,.3);
+}
+
+.navigation-menuNav .navigation-item .navigation-subtitle {
+  font-family: Oswald-Medium;
+  font-size: 2.25rem;
+}
+
+.navigation-menuNav .navigation-item .navigation-title {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-family: SourceHanSans-Medium;
+  font-size: 1.75rem;
+  position: relative;
+}
+
+.navigation-menuNav .navigation-item .navigation-title:after {
+  content: "";
+  display: block;
+  background-color: currentColor;
+  width: 100%;
+  height: .375rem;
+  position: absolute;
+  right: 0;
+  bottom: -.1875rem;
+}
+
+.navigation-menuNav .navigation-item .navigation-subtitle,.navigation-menuNav .navigation-item .navigation-title {
+  transition: color .3s;
+}
+
+.navigation-menuNav .navigation-item.navigation-active .navigation-subtitle,.navigation-menuNav .navigation-item.navigation-active .navigation-title {
+  color: #19d1ff;
+}
+
+.navigation-menuNav .navigation-item {
+  transition: opacity .2s,transform .2s;
+  opacity: 0;
+  transform: translateX(20%);
+}
+
+.navigation-menuNav.navigation-active .navigation-item {
+  opacity: 1;
+  transform: translateX(0);
+}

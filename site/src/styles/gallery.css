@@ -1,0 +1,305 @@
+/* gallery 分区样式，类名已恢复为可维护的语义名称。 */
+.gallery-celebReview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 7;
+  transition: transform 1s,opacity 1s,visibility 1s;
+  transform: translateY(100%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gallery-celebReview.gallery-active {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview {
+    padding: 9.375rem 5.75rem 12rem 0;
+    display: flex;
+  }
+  .gallery-celebReview .gallery-_celebReview {
+    width: 100%;
+    padding: 10rem 1.25rem 5.75rem 7.875rem;
+    border-bottom: 1px solid hsla(0,0%,100%,.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+  }
+}
+
+.gallery-celebReview .gallery-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-cover {
+    background-color: unset;
+    position: static;
+    width: auto;
+    height: 18.25rem;
+  }
+}
+
+.gallery-celebReview .gallery-cover .gallery-img {
+  cursor: pointer;
+  position: absolute;
+  top: 3rem;
+  right: 0;
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-cover .gallery-img {
+    position: static;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.gallery-celebReview .gallery-cover:after {
+  pointer-events: none;
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg,#000 8%,transparent 30%),linear-gradient(180deg,#000 2rem,transparent 10rem),linear-gradient(90deg,#000 10%,transparent 20%),linear-gradient(45deg,#000 18.75rem,transparent 30.75rem);
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-cover:after {
+    display: none;
+  }
+}
+
+.gallery-celebReview .gallery-timeline {
+  position: absolute;
+  top: 11.75rem;
+  left: 8.125rem;
+  pointer-events: none;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-timeline {
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.gallery-celebReview .gallery-timeline>* {
+  pointer-events: all;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-yearSelector {
+  font-family: Novecentosanswide-Bold;
+  line-height: 1;
+  position: relative;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-yearSelector .gallery-title {
+  font-size: 1.25rem;
+  color: #18d1ff;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector {
+  margin-top: 1.5rem;
+  height: 27.375rem;
+  width: 10rem;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-timeline .gallery-monthSelector {
+    margin-top: 0;
+    height: auto;
+  }
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 1rem 0;
+  transition: color .3;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month .gallery-dash {
+  flex: none;
+  width: 1rem;
+  height: 1px;
+  background-color: #8d8d8d;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month .gallery-text {
+  margin-left: 1rem;
+  font-family: Bender-Regular;
+  font-size: 1.125rem;
+  transform-origin: left;
+  transition: transform .3s;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month .gallery-text {
+    font-size: 1.5rem;
+  }
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month.gallery-active {
+  color: #18d1ff;
+}
+
+.gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month.gallery-active .gallery-text {
+  transform: scale(1.25);
+}
+
+.gallery-celebReview .gallery-infoAndList {
+  position: absolute;
+  left: 8.25rem;
+  bottom: 6.375rem;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-infoAndList {
+    position: static;
+  }
+}
+
+.gallery-celebReview .gallery-info .gallery-title {
+  font-size: 3.125rem;
+  font-weight: 700;
+  text-shadow: 0 0 .5rem #000;
+}
+
+.gallery-celebReview .gallery-info .gallery-desc {
+  font-size: 1.875rem;
+  text-shadow: 0 0 .5rem #000;
+}
+
+.gallery-celebReview .gallery-info:after {
+  margin-top: .5rem;
+  content: "";
+  display: block;
+  width: 20.5rem;
+  height: .5rem;
+  background-color: #18d1ff;
+}
+
+.gallery-celebReview .gallery-list {
+  position: relative;
+  margin-top: 1.5rem;
+  width: 46.625rem;
+  height: 6.125rem;
+}
+
+.gallery-celebReview .gallery-list .gallery-swiper {
+  -webkit-mask: linear-gradient(-90deg,transparent,#000 2rem);
+  mask: linear-gradient(-90deg,transparent,#000 2rem);
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-list .gallery-swiper {
+    -webkit-mask: unset;
+    mask: unset;
+  }
+}
+
+.gallery-celebReview .gallery-list .gallery-item {
+  cursor: pointer;
+  width: 10.75rem;
+  height: 6.125rem;
+  position: relative;
+}
+
+.gallery-celebReview .gallery-list .gallery-item .gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.gallery-celebReview .gallery-list .gallery-item:before {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: #fff;
+  animation: gallery-fadeOut .6s forwards;
+}
+
+.gallery-celebReview .gallery-list .gallery-item:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: .25rem;
+  background-color: #18d1ff;
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+.gallery-celebReview .gallery-list .gallery-item.gallery-active:before {
+  content: "";
+}
+
+.gallery-celebReview .gallery-list .gallery-item.gallery-active:after {
+  opacity: 1;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-list {
+    margin-top: 3.75rem;
+    width: auto;
+    height: 25rem;
+  }
+  .gallery-celebReview .gallery-list .gallery-swiper {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
+
+.gallery-celebReview .gallery-_celebReview>.gallery-floatingText {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  height: .95em;
+  font-family: Oswald-Medium;
+  font-size: 7rem;
+  letter-spacing: -.05em;
+  color: #242424;
+}
+
+@media (orientation:portrait) {
+  .gallery-celebReview .gallery-_celebReview>.gallery-floatingText {
+    left: 4.25rem;
+    top: 100%;
+    bottom: auto;
+    margin-top: 1px;
+  }
+}

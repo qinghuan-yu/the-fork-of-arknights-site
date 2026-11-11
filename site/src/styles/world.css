@@ -1,0 +1,375 @@
+/* world 分区样式，类名已恢复为可维护的语义名称。 */
+.world-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #272727;
+  background-image: url("/assets/images/bg2.e562d9ae.png");
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media (orientation:portrait) {
+  .world-container {
+    background-color: #080808;
+    background-image: none;
+  }
+}
+
+.world-container:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #101010;
+  opacity: .85;
+}
+
+@media (orientation:portrait) {
+  .world-container:before {
+    display: none;
+  }
+}
+
+.world-container .world-bgMask {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-size: 100% 100%;
+}
+
+body[data-mix-blend-mode="1"] .world-container .world-bgMask {
+  display: block;
+  mix-blend-mode: overlay;
+}
+
+@media (orientation:portrait) {
+  body[data-mix-blend-mode="1"] .world-container .world-bgMask {
+    display: none;
+  }
+}
+
+.world-container .world-storyList {
+  position: absolute;
+  z-index: 3;
+  left: 9rem;
+  top: 20.3703703704%;
+  width: 39.875rem;
+}
+
+.world-container .world-storyList .world-storyItem {
+  cursor: pointer;
+  height: 6rem;
+  padding-bottom: .75rem;
+  border-bottom: 1px solid #fff;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  line-height: 1;
+  transition: transform .8s,opacity .8s;
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.world-container .world-storyList .world-storyItem .world-shadowText {
+  position: absolute;
+  font-family: Novecentosanswide-Bold;
+  font-size: 4.5rem;
+  color: rgba(24,209,255,.25);
+  right: .75rem;
+  bottom: .75rem;
+}
+
+.world-container .world-storyList .world-storyItem .world-name {
+  position: relative;
+  font-family: SourceHanSans-Bold;
+  font-size: 2.5rem;
+  text-shadow: 0 0 1em #000,0 0 1em #000;
+}
+
+.world-container .world-storyList .world-storyItem .world-nameEn {
+  margin-left: 1.5rem;
+  position: relative;
+  font-family: Novecentosanswide-Bold;
+  font-size: 1.25rem;
+  text-shadow: 0 0 1em #000,0 0 1em #000;
+}
+
+.world-container .world-storyList .world-storyItem .world-shadowText {
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+.world-container .world-storyList .world-storyItem .world-name,.world-container .world-storyList .world-storyItem .world-nameEn {
+  transition: color .3s,transform .3s;
+  color: #ababab;
+}
+
+@media (any-hover:hover) {
+  .world-container .world-storyList .world-storyItem:hover .world-shadowText {
+    opacity: 1;
+  }
+  .world-container .world-storyList .world-storyItem:hover .world-name,.world-container .world-storyList .world-storyItem:hover .world-nameEn {
+    transform: translateX(2rem);
+    color: #fff;
+  }
+}
+
+.world-container .world-storyList .world-storyItem.world-visible {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.world-container .world-detailContainer .world-detailContent {
+  position: absolute;
+  z-index: 3;
+  left: 54.25rem;
+  top: 45.5555555556%;
+  width: 30.75rem;
+  height: 1px;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-detailContent {
+    left: 0;
+    top: 62.3688155922%;
+    width: 100%;
+    padding-left: 4.25rem;
+    padding-right: 10.5rem;
+    display: flex;
+  }
+}
+
+.world-container .world-detailContainer .world-detailContent:before {
+  content: "";
+  display: block;
+  flex: auto;
+  height: 1px;
+  min-width: 0;
+  transition: width .6s;
+  background-image: repeating-linear-gradient(90deg,#b2b2b2,#b2b2b2 .25rem,transparent 0,transparent .5rem);
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-detailContent:before {
+    content: none;
+  }
+}
+
+.world-container .world-detailContainer .world-detailContent .world-title {
+  position: absolute;
+  bottom: 3rem;
+  font-family: SourceHanSans-Bold;
+  font-size: 3.75rem;
+  overflow: hidden;
+}
+
+.world-container .world-detailContainer .world-detailContent .world-title .world-text {
+  display: inline-block;
+}
+
+.world-container .world-detailContainer .world-detailContent .world-subtitle {
+  position: absolute;
+  bottom: 1rem;
+  font-family: Novecentosanswide-Bold;
+  font-size: 2rem;
+  overflow: hidden;
+}
+
+.world-container .world-detailContainer .world-detailContent .world-subtitle .world-text {
+  display: inline-block;
+}
+
+.world-container .world-detailContainer .world-detailContent .world-desc {
+  position: absolute;
+  top: 1rem;
+  width: 100%;
+  font-family: SourceHanSans-Regular;
+  font-size: 1rem;
+  overflow: hidden;
+}
+
+.world-container .world-detailContainer .world-detailContent .world-desc .world-text {
+  display: inline-block;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-detailContent .world-desc {
+    padding-right: 14.75rem;
+  }
+}
+
+.world-container .world-detailContainer .world-arrowRight,.world-container .world-detailContainer .world-arrowLeft {
+  cursor: pointer;
+  position: absolute;
+  z-index: 2;
+  top: 48.1481481481%;
+  box-sizing: content-box;
+  width: 2rem;
+  padding: 1rem 2rem;
+  transition: opacity .3s;
+  opacity: .7;
+}
+
+@media (any-hover:hover) {
+  .world-container .world-detailContainer .world-arrowRight:hover,.world-container .world-detailContainer .world-arrowLeft:hover {
+    opacity: 1;
+  }
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-arrowRight,.world-container .world-detailContainer .world-arrowLeft {
+    top: 35.2323838081%;
+    width: 1.25rem;
+    padding: 1rem;
+  }
+}
+
+.world-container .world-detailContainer .world-arrowLeft {
+  left: 6.625rem;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-arrowLeft {
+    left: 3.5rem;
+  }
+}
+
+.world-container .world-detailContainer .world-arrowRight {
+  left: 95.5rem;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-detailContainer .world-arrowRight {
+    left: auto;
+    right: 9.5rem;
+  }
+}
+
+.world-container .world-floatingText {
+  position: absolute;
+  z-index: 2;
+  bottom: 11.25rem;
+  transform: translateY(100%);
+  left: 9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  height: .95em;
+  font-family: Oswald-Medium;
+  font-size: 7rem;
+  letter-spacing: -.05em;
+  color: #242424;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-floatingText {
+    left: 4.25rem;
+    bottom: 18.2908545727%;
+  }
+}
+
+.world-container .world-nav {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  bottom: 11.25rem;
+  transform: translateY(100%);
+  display: flex;
+  height: .5rem;
+  width: 100%;
+  padding-right: 17.25rem;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-nav {
+    bottom: 18.2908545727%;
+    padding-right: 5.75rem;
+  }
+}
+
+.world-container .world-nav .world-_nav {
+  flex: auto;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.world-container .world-nav .world-navItem {
+  cursor: pointer;
+  flex: 1 1;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  transition: background-color .3s;
+  background-color: #5a5a5a;
+}
+
+@media (any-hover:hover) {
+  .world-container .world-nav .world-navItem:hover {
+    background-color: #ababab;
+  }
+}
+
+.world-container .world-nav .world-pointer {
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  transition: left .3s;
+  background-color: #18d1ff;
+}
+
+.world-container .world-storyList,.world-container .world-detailContainer,.world-container .world-nav {
+  transition: opacity .6s,visibility .6s;
+}
+
+.world-container.world-detailInvisible .world-storyList {
+  opacity: 1;
+  visibility: visible;
+}
+
+.world-container.world-detailInvisible .world-detailContainer,.world-container.world-detailInvisible .world-nav {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.world-container.world-detailInvisible .world-detailContainer .world-detailContent:before,.world-container.world-detailInvisible .world-nav .world-detailContent:before {
+  width: 0;
+}
+
+.world-container.world-detailVisible .world-storyList {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.world-container.world-detailVisible .world-detailContainer,.world-container.world-detailVisible .world-nav {
+  opacity: 1;
+  visibility: visible;
+}
+
+.world-container.world-detailVisible .world-detailContainer .world-detailContent:before,.world-container.world-detailVisible .world-nav .world-detailContent:before {
+  transition-delay: .6s;
+  width: 100%;
+}
+
+.world-container .world-floatingText {
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.world-container.world-active .world-floatingText {
+  opacity: 1;
+}

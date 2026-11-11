@@ -12,5 +12,7 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 
 - 页面只保留前端展示和本地交互，不恢复下载、登录、充值、客服、社交平台或其他站外服务入口。
 - 大型宣传片使用本地循环片段占位，保留图集、角色语音、世界观粒子动画和主题展示。
-- 当前以原站编译资源为基础；服务入口清理必须同时更新首屏 HTML 与客户端组件，并能通过 `.capture/assemble.py` 重建。
+- 当前入口为 `index.html` → `src/main.jsx` → `src/App.jsx`，直接维护 React 组件、分区样式和本地 JSON 数据。不得重新引入原站编译包、业务 SDK 或旧的 `.capture/assemble.py` 组装流程。
 - 仓库名称为 `the-fork-of-arknights-site`，用户已明确选择公开仓库。
+- 只提交前端源码、运行素材、依赖清单、锁文件、配置和必要文档；不提交 `node_modules/`、`dist/`、打包文件、截图或采集缓存。
+- 2026-11-12 按用户要求先推送源码拆分检查点，供 GPT 的 Dot 接手。先阅读根目录 `HANDOFF.md` 和 `design-qa.md`，不要将阶段性提交描述为全部完成。

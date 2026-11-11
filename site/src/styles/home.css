@@ -1,0 +1,203 @@
+/* home 分区样式，类名已恢复为可维护的语义名称。 */
+.home-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.home-container .home-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/images/bg.8954cef1.jpg");
+  background-size: cover;
+  background-position: 50%;
+  transition: opacity 1s;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-bg {
+    background-image: url("/assets/images/bg_m.784bbb87.jpg");
+  }
+}
+
+.home-container .home-maskBlock {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  opacity: .78;
+  width: 52.5rem;
+  height: 60.75rem;
+  background-image: url("/assets/images/mask_block.33e7b5a1.png");
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: auto 110%;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-maskBlock {
+    width: 18.75rem;
+    height: 12rem;
+    background-image: url("/assets/images/mask_block_m.f8c50bfb.png");
+    background-size: auto 100%;
+  }
+}
+
+.home-container .home-maskBlock2 {
+  position: absolute;
+  left: 100%;
+  transform: translateX(-14.75rem);
+  bottom: 0;
+  opacity: .25;
+  width: 52.5rem;
+  height: 60.75rem;
+  background-image: url("/assets/images/mask_block.33e7b5a1.png");
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: auto 110%;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-maskBlock2 {
+    width: 5.75rem;
+    height: 12rem;
+    transform: translateX(-3.75rem);
+    background-image: url("/assets/images/mask_block_m.f8c50bfb.png");
+    background-size: auto 100%;
+  }
+}
+
+.home-container .home-bottomShadow {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 12rem;
+  background-image: linear-gradient(0deg,#000,transparent);
+}
+
+@media (orientation:portrait) {
+  .home-container .home-bottomShadow {
+    display: block;
+  }
+}
+
+.home-container .home-infos {
+  position: absolute;
+  left: 4.5rem;
+  bottom: 2.75rem;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos {
+    left: 2rem;
+    bottom: 3rem;
+  }
+}
+
+.home-container .home-infos .home-main {
+  display: flex;
+}
+
+.home-container .home-infos .home-main .home-primaryText {
+  line-height: .75;
+  font-family: Novecentosanswide-UltraBold;
+  font-size: 5.5rem;
+  margin-right: 2rem;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos .home-main .home-primaryText {
+    font-size: 2.375rem;
+    margin-right: 1rem;
+  }
+}
+
+.home-container .home-infos .home-main .home-subBox {
+  display: flex;
+  flex-direction: column;
+  font-family: Novecentosanswide-Medium;
+}
+
+.home-container .home-infos .home-main .home-subBox .home-secondaryText {
+  font-size: 1.125rem;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos .home-main .home-subBox .home-secondaryText {
+    font-size: .5rem;
+  }
+}
+
+.home-container .home-infos .home-main .home-subBox .home-linkText {
+  font-size: .875rem;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos .home-main .home-subBox .home-linkText {
+    font-size: .375rem;
+  }
+}
+
+.home-container .home-infos .home-main .home-subBox:after {
+  content: "";
+  display: block;
+  width: 6rem;
+  height: 1px;
+  background-color: #fff;
+  margin-top: auto;
+}
+
+.home-container .home-infos .home-copyright {
+  margin-top: 2.5rem;
+  width: 7.875rem;
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos .home-copyright {
+    margin-top: 9.375rem;
+    width: 7.25rem;
+  }
+}
+
+.home-container .home-maskBlock2,.home-container .home-maskBlock {
+  transition: opacity .6s;
+  opacity: 0;
+}
+
+.home-container .home-infos {
+  transition: transform 1s;
+  transform: translateY(11.5rem);
+}
+
+@media (orientation:portrait) {
+  .home-container .home-infos {
+    transform: translateY(12.25rem);
+  }
+}
+
+.home-container.home-active {
+  opacity: 1;
+}
+
+.home-container.home-active .home-maskBlock {
+  transition-delay: 2s;
+  opacity: .78;
+}
+
+.home-container.home-active .home-maskBlock2 {
+  transition-delay: 2.3s;
+  opacity: .25;
+}
+
+.home-container.home-active .home-infos {
+  transform: translateY(0);
+}

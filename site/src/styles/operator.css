@@ -1,0 +1,634 @@
+/* operator 分区样式，类名已恢复为可维护的语义名称。 */
+.operator-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #272727;
+  background-image: url("/assets/images/bg2.e562d9ae.png");
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media (orientation:portrait) {
+  .operator-container {
+    background-image: url("/assets/images/bg2_m.aa95d813.png");
+  }
+}
+
+.operator-container:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 11.25rem;
+  background-color: #272727;
+}
+
+@media (orientation:portrait) {
+  .operator-container:before {
+    display: none;
+  }
+}
+
+.operator-container .operator-bgMask {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-size: 100% 100%;
+}
+
+body[data-mix-blend-mode="1"] .operator-container .operator-bgMask {
+  display: block;
+  mix-blend-mode: overlay;
+}
+
+@media (orientation:portrait) {
+  body[data-mix-blend-mode="1"] .operator-container .operator-bgMask {
+    display: none;
+  }
+}
+
+.operator-container .operator-illustStyled {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 37.125rem;
+}
+
+.operator-container .operator-illustStyled:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 15.625rem;
+  background-image: linear-gradient(0deg,rgba(0,0,0,.7),transparent);
+}
+
+.operator-container .operator-illustStyled .operator-img {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-illustStyled .operator-img {
+    background-position: 25%;
+  }
+}
+
+.operator-container .operator-illustStyled:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(-90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.3));
+}
+
+.operator-container .operator-illust {
+  z-index: 4;
+  position: absolute;
+  left: 60%;
+  top: 30%;
+  height: 100%;
+}
+
+.operator-container .operator-illust .operator-img {
+  width: auto;
+  height: 100%;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-illust .operator-img {
+    height: auto;
+    width: 150%;
+  }
+  .operator-container .operator-illust {
+    width: 100%;
+    height: 100%;
+    left: 30.6%;
+    top: 20rem;
+  }
+}
+
+.operator-container .operator-illust .operator-imgWrapper {
+  width: 100%;
+  height: 100%;
+  transform: translateX(-3rem);
+  animation: operator-easing 10s forwards;
+}
+
+.operator-container .operator-bottomBlock {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 11.25rem;
+  background-image: linear-gradient(0deg,rgba(0,0,0,.8),rgba(0,0,0,.5));
+}
+
+.operator-container .operator-bottomBlock:after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background-image: linear-gradient(90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.2));
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-bottomBlock {
+    display: none;
+  }
+}
+
+.operator-container .operator-moduleTitle {
+  position: absolute;
+  z-index: 2;
+  font-family: Oswald-Medium;
+  left: 9.125rem;
+  top: 12.5rem;
+  color: #fff;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-moduleTitle {
+    left: 2rem;
+    top: 11.875rem;
+  }
+}
+
+.operator-container .operator-moduleTitle .operator-title {
+  font-size: .875rem;
+}
+
+.operator-container .operator-moduleTitle .operator-subtitle {
+  margin-top: .5rem;
+  font-size: 1.5rem;
+}
+
+.operator-container .operator-phaseSelector {
+  position: absolute;
+  z-index: 5;
+  right: 14.75rem;
+  bottom: 11.25rem;
+  transform: translateX(100%);
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-phaseSelector {
+    right: 5.75rem;
+    top: 46.25rem;
+    bottom: auto;
+  }
+}
+
+.operator-container .operator-phaseSelector .operator-phaseItem {
+  cursor: pointer;
+  height: 4rem;
+  padding: 0 1.5rem;
+  border-left: .5rem solid;
+  display: flex;
+  align-items: center;
+  transition: color .3s;
+  color: #ababab;
+}
+
+.operator-container .operator-phaseSelector .operator-phaseItem .operator-icon {
+  width: 3rem;
+}
+
+@media (any-hover:hover) {
+  .operator-container .operator-phaseSelector .operator-phaseItem:hover {
+    color: #fff;
+  }
+}
+
+.operator-container .operator-phaseSelector .operator-phaseItem.operator-active {
+  color: #18d1ff;
+}
+
+.operator-container .operator-main {
+  position: absolute;
+  z-index: 5;
+  left: 9.25rem;
+  bottom: 7.5rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main {
+    left: 0;
+    top: 46.25rem;
+    bottom: auto;
+    width: 100%;
+    height: 100%;
+    padding-right: 5.75rem;
+    background-image: linear-gradient(180deg,rgba(0,0,0,.5),#000 30rem);
+  }
+  .operator-container .operator-main .operator-_main {
+    padding: 1.5rem 2.25rem 0;
+    height: 100%;
+  }
+}
+
+.operator-container .operator-main .operator-charInfo {
+  position: relative;
+}
+
+.operator-container .operator-main .operator-codenameShadowed {
+  position: absolute;
+  top: 3.75rem;
+  height: 4.5rem;
+  opacity: .34;
+  overflow: hidden;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-codenameShadowed {
+    top: 3rem;
+  }
+}
+
+.operator-container .operator-main .operator-codenameShadowed .operator-text {
+  font-family: Oswald-DemiBold;
+  position: absolute;
+  opacity: 0;
+}
+
+.operator-container .operator-main .operator-codenameShadowed .operator-img {
+  height: 9rem;
+  width: auto;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-codenameShadowed .operator-img {
+    height: 8.5rem;
+  }
+}
+
+.operator-container .operator-main .operator-charNameAndCamp {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+.operator-container .operator-main .operator-charNameAndCamp .operator-charName {
+  line-height: 1;
+  margin-bottom: .25rem;
+}
+
+.operator-container .operator-main .operator-charNameAndCamp .operator-charName .operator-codename {
+  font-family: Novecentosanswide-Bold;
+  font-size: 1.25rem;
+}
+
+.operator-container .operator-main .operator-charNameAndCamp .operator-charName .operator-name {
+  font-family: SourceHanSans-Bold;
+  font-size: 3.75rem;
+}
+
+.operator-container .operator-main .operator-charNameAndCamp .operator-camp {
+  margin-left: 1.5rem;
+  height: 5rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-charNameAndCamp .operator-camp {
+    margin-left: 2rem;
+    height: 5.125rem;
+  }
+}
+
+.operator-container .operator-main .operator-charNameAndCamp .operator-camp .operator-img {
+  height: 100%;
+  width: auto;
+}
+
+.operator-container .operator-main .operator-voiceContainer {
+  position: relative;
+  margin-top: 1.75rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-voiceContainer {
+    margin-top: .75rem;
+  }
+}
+
+.operator-container .operator-main .operator-intro {
+  margin-top: 2rem;
+  width: 33.625rem;
+  padding: .875rem 3.75rem 1.125rem;
+  background-color: #000;
+  white-space: pre-wrap;
+  font-family: SourceHanSans-Regular;
+  font-size: 1.125rem;
+  line-height: 1.4;
+  color: #ababab;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-intro {
+    width: auto;
+    height: 9rem;
+    background-color: unset;
+    padding: 0;
+    font-size: 1.25rem;
+  }
+}
+
+.operator-container .operator-main .operator-list {
+  margin-top: 1.25rem;
+  margin-left: -2rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list {
+    margin-top: 1rem;
+    margin-left: unset;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView {
+  margin: 0 2rem;
+  width: 33.625rem;
+  -webkit-mask: linear-gradient(-90deg,hsla(0,0%,100%,0),#fff 2rem);
+  mask: linear-gradient(-90deg,hsla(0,0%,100%,0),#fff 2rem);
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView {
+    margin: auto;
+    width: auto;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar {
+  cursor: pointer;
+  position: relative;
+  width: 7.125rem;
+  height: 11.25rem;
+  margin-top: .5rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar {
+    width: 8.125rem;
+    height: 9.625rem;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-flag {
+  position: absolute;
+  right: -.375rem;
+  top: -.5rem;
+  border-color: #18d1ff #18d1ff transparent transparent;
+  border-style: solid;
+  border-width: 1rem;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-border {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: .625rem solid #fff;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-border {
+    height: 8.125rem;
+    border-color: #555553;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-avatar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(-.5rem .5rem 1rem #000);
+  overflow: hidden;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-avatar {
+    width: 8.125rem;
+    height: 8.125rem;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-avatar .operator-img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-avatar .operator-img {
+    width: 80%;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info {
+  position: absolute;
+  left: .375rem;
+  bottom: .75rem;
+  filter: drop-shadow(0 0 .5rem #000) drop-shadow(0 0 .5rem #000);
+  transition: color .3s;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info {
+    color: #b0b0b0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info:before {
+  display: block;
+  width: 4.25rem;
+  height: .375rem;
+  background-color: rgba(24,209,255,.5);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info:before {
+    content: "";
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info:after {
+  content: "";
+  display: block;
+  width: .375rem;
+  height: .375rem;
+  background-color: currentColor;
+  position: absolute;
+  left: 0;
+  bottom: 1.5rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info:after {
+    left: .75rem;
+    bottom: 2.25rem;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info .operator-charName {
+  position: relative;
+  display: block;
+  font-family: SourceHanSans-Medium;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-info .operator-charName {
+    font-size: 1.125rem;
+    padding-left: 2px;
+    text-shadow: 0 0 .5rem #000,0 0 .5rem #000;
+  }
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar .operator-flag {
+  transition: opacity .3s;
+  opacity: 0;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background-color: #fff;
+  animation: operator-fadeOut 1s forwards;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar.operator-active .operator-flag {
+  opacity: 1;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar.operator-active .operator-border {
+  border-color: #fff;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar.operator-active .operator-info {
+  color: #fff;
+}
+
+.operator-container .operator-main .operator-list .operator-scrollView .operator-charAvatar.operator-active:after {
+  content: "";
+}
+
+.operator-container .operator-main .operator-scrollbar {
+  margin-top: 2.25rem;
+  position: relative;
+  width: 33.5rem;
+  height: .75rem;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-scrollbar {
+    width: auto;
+    margin-top: .75rem;
+  }
+}
+
+.operator-container .operator-main .operator-scrollbar:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 38.5rem;
+  height: .1875rem;
+  background-color: #ababab;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-scrollbar:before {
+    width: 100%;
+  }
+}
+
+.operator-container .operator-main .operator-scrollbar .swiper-scrollbar-drag {
+  position: relative;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+@media (orientation:portrait) {
+  .operator-container .operator-main .operator-scrollbar .swiper-scrollbar-drag {
+    border-radius: 0;
+  }
+}
+
+.operator-voice {
+  display: flex;
+  align-items: center;
+}
+
+.operator-voice .operator-block {
+  width: 14.375rem;
+  height: 2.75rem;
+  background-color: hsla(0,0%,4%,.9);
+  display: flex;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-block {
+    align-items: center;
+    width: 17.625rem;
+    height: 3rem;
+  }
+}
+
+.operator-voice .operator-block .operator-icon {
+  width: 2.75rem;
+  margin-right: 1.25rem;
+  cursor: pointer;
+  transition: color .3s;
+  color: #18d1ff;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-block .operator-icon {
+    width: 2.375rem;
+    margin-left: .375rem;
+  }
+}
+
+@media (any-hover:hover) {
+  .operator-voice .operator-block .operator-icon:hover {
+    color: #7ee5ff;
+  }
+}

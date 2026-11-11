@@ -1,0 +1,24 @@
+[
+  {
+    "key": "integrated_strategies",
+    "nameEn": "INTEGRATED STRATEGIES",
+    "cover": "/assets/images/integrated_strategies.e6e35f3c.png",
+    "cover_portrait": "/assets/images/integrated_strategies_m.3b3e6f24.png",
+    "icon": "/assets/images/icon-integrated_strategies.05cfb26b.png",
+    "themeColor": "#4c2b2a",
+    "activeColor": "#c7151e",
+    "view": 1,
+    "name": "集成战略"
+  },
+  {
+    "key": "reclamation_algorithm",
+    "nameEn": "RECLAMATION ALGORITHM",
+    "cover": "/assets/images/reclamation_algorithm.91dd81b0.png",
+    "cover_portrait": "/assets/images/reclamation_algorithm_m.68fd8eb7.png",
+    "icon": "/assets/images/icon-reclamation_algorithm.54ea704e.png",
+    "themeColor": "#898175",
+    "activeColor": "#eeb763",
+    "view": 2,
+    "name": "生息演算"
+  }
+]

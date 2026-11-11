@@ -1,0 +1,238 @@
+/* more 分区样式，类名已恢复为可维护的语义名称。 */
+.more-container,.more-container .more-list {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.more-container .more-list {
+  z-index: 4;
+  transition: opacity .3s,visibility .3s;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list {
+    z-index: 3;
+    top: 9.375rem;
+    padding-right: 5.75rem;
+    height: 74.5127436282%;
+  }
+}
+
+.more-container .more-list .more-_list {
+  height: 100%;
+  display: flex;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-_list {
+    flex-direction: column;
+  }
+}
+
+.more-container .more-list .more-listItem {
+  cursor: pointer;
+  flex: 1 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+}
+
+.more-container .more-list .more-listItem .more-cover {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-cover {
+    background-position: 100%;
+  }
+}
+
+.more-container .more-list .more-listItem .more-brightnessMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: .2;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-brightnessMask {
+    display: none;
+  }
+}
+
+.more-container .more-list .more-listItem .more-themeMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg,transparent,currentColor 30%,transparent 60%);
+  opacity: .7;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-themeMask {
+    background-image: linear-gradient(90deg,transparent,currentColor 20%,transparent 70%);
+    opacity: .9;
+  }
+}
+
+.more-container .more-list .more-listItem .more-activeMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg,currentColor,transparent 50%);
+  opacity: 0;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-activeMask {
+    display: none;
+  }
+}
+
+.more-container .more-list .more-listItem .more-shadowMask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(0deg,#000,transparent 40%),linear-gradient(0deg,#000,transparent 30%),linear-gradient(180deg,#000,rgba(0,0,0,.6) 20%,transparent 40%),linear-gradient(-90deg,rgba(0,0,0,.8),transparent 4rem);
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-shadowMask {
+    background-image: linear-gradient(0deg,rgba(0,0,0,.6),transparent 30%),linear-gradient(90deg,#000,transparent 30%);
+  }
+}
+
+.more-container .more-list .more-listItem .more-info {
+  position: absolute;
+  left: 8.375rem;
+  bottom: 20.5555555556%;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-listItem .more-info {
+    left: 7.5rem;
+    bottom: 3.625rem;
+  }
+}
+
+.more-container .more-list .more-listItem .more-info .more-title {
+  font-family: SourceHanSans-Bold;
+  font-size: 3.375rem;
+  position: relative;
+  filter: drop-shadow(0 0 .5rem #000);
+}
+
+.more-container .more-list .more-listItem .more-info .more-title .more-icon {
+  position: absolute;
+  left: -2.75rem;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 3.75rem;
+  height: 4.75rem;
+  background-size: contain;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+
+.more-container .more-list .more-listItem .more-info .more-subtitle {
+  margin-top: 1.5rem;
+  font-family: Novecentosanswide-Medium;
+}
+
+.more-container .more-list .more-listItem .more-info .more-desc {
+  font-family: Novecentosanswide-Medium;
+  font-size: .75rem;
+}
+
+.more-container .more-list .more-listItem .more-info:after {
+  content: "";
+  display: block;
+  height: 1px;
+  background-color: currentColor;
+  width: 6.75rem;
+  margin-top: 1.25rem;
+}
+
+.more-container .more-list .more-listItem .more-cover {
+  transition: transform .6s;
+}
+
+.more-container .more-list .more-listItem .more-brightnessMask,.more-container .more-list .more-listItem .more-activeMask {
+  transition: opacity .3s;
+}
+
+@media (any-hover:hover) {
+  .more-container .more-list .more-listItem:hover .more-cover {
+    transform: scale(1.1);
+  }
+  .more-container .more-list .more-listItem:hover .more-brightnessMask {
+    opacity: 0;
+  }
+  .more-container .more-list .more-listItem:hover .more-activeMask {
+    opacity: .5;
+  }
+}
+
+.more-container .more-list .more-floatingText {
+  pointer-events: none;
+  position: absolute;
+  bottom: 11.25rem;
+  transform: translateY(100%);
+  left: 8.375rem;
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  height: .95em;
+  font-family: Oswald-Medium;
+  font-size: 7rem;
+  letter-spacing: -.05em;
+  color: #242424;
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list .more-floatingText {
+    left: 2.875rem;
+    top: 100%;
+    bottom: auto;
+    transform: none;
+  }
+}
+
+.more-container .more-list:after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  bottom: 11.25rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: hsla(0,0%,100%,.5);
+}
+
+@media (orientation:portrait) {
+  .more-container .more-list:after {
+    left: auto;
+    top: 100%;
+    right: 5.75rem;
+    bottom: auto;
+  }
+}

@@ -1,0 +1,284 @@
+[
+  {
+    "code": "B003",
+    "camp": "RHODES ISLAND",
+    "avatar": "/assets/images/kaltsit.05c0f5e1.png",
+    "illustList": [
+      {
+        "phase": 1,
+        "illust": "/assets/images/kaltsit_e1.a53cfc2e.png",
+        "focus": {
+          "ox": 0.5078125,
+          "oy": 0.2734375,
+          "tx": -0.390625,
+          "ty": -0.05859375,
+          "scale": 1.3
+        },
+        "illustStyled": "/assets/images/kaltsit_e2_styled.94b12054.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/kaltsit_e2.a0c208dc.png",
+        "focus": {
+          "ox": 0.52734375,
+          "oy": 0.66015625,
+          "tx": -0.4375,
+          "ty": -0.369140625,
+          "scale": 1.3
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/kaltsit_ja.5d52d4.wav",
+        "actor": "日笠阳子"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/kaltsit_cn.247755.wav",
+        "actor": "刘雪"
+      }
+    ],
+    "name": "凯尔希",
+    "codename": "KAL'TSIT",
+    "intro": "罗德岛最高管理者之一，阿米娅的直接辅导者。\n罗德岛医疗部门的总负责人。\n作为罗德岛的老成员，凯尔希医生是在阿米娅背后最稳固的援护者。"
+  },
+  {
+    "code": "R001",
+    "camp": "RHODES ISLAND",
+    "avatar": "/assets/images/amiya.a410de75.png",
+    "illustList": [
+      {
+        "phase": 0,
+        "illust": "/assets/images/amiya_e0.2c74e355.png",
+        "focus": {
+          "ox": 0.51953125,
+          "oy": 0.337890625,
+          "tx": -0.44140625,
+          "ty": -0.1171875,
+          "scale": 1.3
+        },
+        "illustStyled": "/assets/images/amiya_e1_styled.db35f491.png"
+      },
+      {
+        "phase": 1,
+        "illust": "/assets/images/amiya_e1.739a31c1.png",
+        "focus": {
+          "ox": 0.4921875,
+          "oy": 0.421875,
+          "tx": -0.3671875,
+          "ty": -0.203125,
+          "scale": 1.3
+        },
+        "illustStyled": "/assets/images/amiya_e2_styled.8b458840.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/amiya_e2.6bc004b9.png",
+        "focus": {
+          "ox": 0.5078125,
+          "oy": 0.498046875,
+          "tx": -0.408203125,
+          "ty": -0.30859375,
+          "scale": 1.5
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/amiya_ja.eb4ec8.mp3",
+        "actor": "黑泽朋世"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/amiya_cn.c3aaa1.wav",
+        "actor": "陶典"
+      }
+    ],
+    "name": "阿米娅",
+    "codename": "AMIYA",
+    "intro": "罗德岛的公开领袖，在内部拥有最高执行权。虽然，从外表上看起来仅仅是个不成熟的少女，实际上，她却是深受大家信任的合格的领袖。现在，阿米娅正带领着罗德岛，为了感染者的未来，为了让这片大地挣脱矿石病的阴霾而不懈努力。"
+  },
+  {
+    "code": "LM04",
+    "camp": "LUNGMEN",
+    "avatar": "/assets/images/chen.4d5cd8a0.png",
+    "illustList": [
+      {
+        "phase": 1,
+        "illust": "/assets/images/chen_e1.54258041.png",
+        "focus": {
+          "ox": 0.6875,
+          "oy": 0.154296875,
+          "tx": -0.3671875,
+          "ty": -0.10546875,
+          "scale": 1.3
+        },
+        "illustStyled": "/assets/images/chen_e2_styled.3825ba6a.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/chen_e2.7c62a20a.png",
+        "focus": {
+          "ox": 0.5078125,
+          "oy": 0.498046875,
+          "tx": -0.408203125,
+          "ty": -0.30859375,
+          "scale": 1.5
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/chen_ja.1b54c3.mp3",
+        "actor": "石上静香"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/chen_cn.075aaf.wav",
+        "actor": "虫虫"
+      }
+    ],
+    "name": "陈",
+    "codename": "CH'EN",
+    "intro": "陈，龙门高级警司，龙门近卫局特别督查组组长，毕业于维多利亚皇家近卫学校，成绩优异，表现突出。在龙门近卫局供职期间，力主取缔龙门境内非法活动，对抗暴力犯罪和有组织犯罪，追缉武装逃犯与国际重犯等行动，并取得多项重大成果。\n现作为特别人员协助罗德岛行动，并为现场提供战术指挥支援。"
+  },
+  {
+    "code": "PL02",
+    "camp": "PENGUIN LOGISTICS",
+    "avatar": "/assets/images/texas.5a198d4c.png",
+    "illustList": [
+      {
+        "phase": 1,
+        "illust": "/assets/images/texas_e1.3801fc0d.png",
+        "focus": {
+          "ox": 0.849609375,
+          "oy": 0.1025390625,
+          "tx": -0.3671875,
+          "ty": -0.10546875,
+          "scale": 1.2
+        },
+        "illustStyled": "/assets/images/texas_e2_styled.9c04f6eb.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/texas_e2.5d953b92.png",
+        "focus": {
+          "ox": 0.5078125,
+          "oy": 0.1953125,
+          "tx": -0.408203125,
+          "ty": -0.201171875,
+          "scale": 1.2
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/texas_ja.b37354.mp3",
+        "actor": "田所梓"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/texas_cn.c379a5.wav",
+        "actor": "杨梦露"
+      }
+    ],
+    "name": "德克萨斯",
+    "codename": "TEXAS",
+    "intro": "企鹅物流员工，单兵作战能力出类拔萃。\n于合约期内任企鹅物流驻罗德岛联络人员，同时为罗德岛的多项行动提供协助。"
+  },
+  {
+    "code": "PL03",
+    "camp": "PENGUIN LOGISTICS",
+    "avatar": "/assets/images/exusiai.ff3d47d4.png",
+    "illustList": [
+      {
+        "phase": 1,
+        "illust": "/assets/images/exusiai_e1.4b3f0e95.png",
+        "focus": {
+          "ox": 0.78515625,
+          "oy": 0.1220703125,
+          "tx": -0.3671875,
+          "ty": -0.10546875,
+          "scale": 1.2
+        },
+        "illustStyled": "/assets/images/exusiai_e2_styled.9163271b.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/exusiai_e2.f34f1db4.png",
+        "focus": {
+          "ox": 0.5078125,
+          "oy": 0.15625,
+          "tx": -0.408203125,
+          "ty": -0.2109375,
+          "scale": 1.2
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/exusiai_ja.1b0df5.mp3",
+        "actor": "石见舞菜香"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/exusiai_cn.4c79a9.wav",
+        "actor": "蔡书瑾"
+      }
+    ],
+    "name": "能天使",
+    "codename": "EXUSIAI",
+    "intro": "能天使，拉特兰公民，适用拉特兰一至十三项公民权益。企鹅物流公司成员。从事秘密联络，武装押运等非公开活动，推测身份：信使。于合约期内任企鹅物流驻罗德岛联络人员，同时为罗德岛多项行动提供协助。"
+  },
+  {
+    "code": "RL04",
+    "camp": "RHINE LAB",
+    "avatar": "/assets/images/ptilopsis.0483cb6d.png",
+    "illustList": [
+      {
+        "phase": 1,
+        "illust": "/assets/images/ptilopsis_e1.5a241fd0.png",
+        "focus": {
+          "ox": 0.53125,
+          "oy": 0.1201171875,
+          "tx": -0.416015625,
+          "ty": -0.10546875,
+          "scale": 1.2
+        },
+        "illustStyled": "/assets/images/ptilopsis_e2_styled.8d260dbb.png"
+      },
+      {
+        "phase": 2,
+        "illust": "/assets/images/ptilopsis_e2.b08f1ca9.png",
+        "focus": {
+          "ox": 0.41015625,
+          "oy": 0.205078125,
+          "tx": -0.408203125,
+          "ty": -0.2109375,
+          "scale": 1.5
+        }
+      }
+    ],
+    "voices": [
+      {
+        "region": "ja",
+        "audio": "/assets/audio/ptilopsis_ja.76ba0e.mp3",
+        "actor": "金元寿子"
+      },
+      {
+        "region": "cn",
+        "audio": "/assets/audio/ptilopsis_cn.3404a4.wav",
+        "actor": "龟娘"
+      }
+    ],
+    "name": "白面鸮",
+    "codename": "PTILOPSIS",
+    "intro": "白面鸮，前莱茵生命公司，数据维护专员。在医疗类源石技艺领域取得不菲成就，于医疗数据维护，常规医疗方案应用，多项目医疗行为等相关领域，拥有丰富经验。\n现于罗德岛担任医疗干员，亦就职于医疗部门，某临床实验小组。同时，为罗德岛提供若干项医疗项目的相关辅助工作。"
+  }
+]
