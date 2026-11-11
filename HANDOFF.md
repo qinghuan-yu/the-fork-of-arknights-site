@@ -2,6 +2,13 @@
 
 交接日期：2026-11-12。用户要求先提交推送当前进度，通过仓库在 GPT 的 Dot 继续工作。本文件及其所在提交是交接依据，无需原对话、原电脑缓存或额外压缩包。
 
+
+## 后续修复状态
+
+原始交接检查点为 `27c1b710d171894f4b79d9706d95631e3e7c5984`，下方保留其开发背景。后续已修复手机主题视频操作与返回按钮遮挡、图集/视频缩略图淡出、手机图集月份布局，并将桌面图集和主题返回按钮移至标题区之外。增加了窄短屏、重复弹窗关闭、图片恢复、焦点恢复和指示条样式回归。
+
+当前验收记录与剩余事项以 [design-qa.md](design-qa.md) 为准。已验证构建、4 项托管测试及 22 项 UI 回归；不再将历史 17/18 结果当作当前状态。尚未开始个人网页的内容与品牌替换，素材版权仍属原权利人。
+
 ## 仓库和目标
 
 - 公开仓库：<https://github.com/qinghuan-yu/the-fork-of-arknights-site>
@@ -30,7 +37,7 @@ npm run test:sites --prefix site
 npm run test:ui --prefix site
 ```
 
-Playwright 使用本机 Chrome，并自动启动 `server.mjs`。也可手动执行 `node server.mjs` 预览。测试会复用已存在的 4173 服务，须确保它提供当前构建。无 Chrome 时安装浏览器或调整 `site/playwright.config.mjs`，不要将浏览器缺失误判为应用错误。
+Playwright 使用本机 Chrome，并自动启动 `server.mjs`。也可手动执行 `node server.mjs` 预览。测试不复用 4173 端口上的旧服务；浏览器选择和部署验证参数见 README。无 Chrome 时安装浏览器或调整 `site/playwright.config.mjs`，不要将浏览器缺失误判为应用错误。
 
 ## 已完成的源码迁移
 
@@ -69,7 +76,7 @@ Playwright 使用本机 Chrome，并自动启动 `server.mjs`。也可手动执�
 
 保留 `site/.openai/hosting.json`、`site/worker/index.js`、`site/scripts/prepare-sites-build.mjs`、`site/tests/sites-worker.test.mjs`，用于可选的 Sites 静态托管，不提供业务 API。应用不需要密钥、环境变量或业务后端。
 
-## 当前质量与后续顺序
+## 原始检查点质量与交接顺序（历史记录）
 
 最新结果：构建通过；静态托管测试 4/4 通过；UI 测试 17/18 通过（桌面 9/9，手机 8/9）。详见 [design-qa.md](design-qa.md)。这是开发检查点，不能宣称视觉和源码拆分已全部验收。
 
@@ -81,6 +88,6 @@ Playwright 使用本机 Chrome，并自动启动 `server.mjs`。也可手动执�
 
 检查点已包含横向溢出修复（`.page-sections { overflow: hidden; }`），本次复测通过；也包含角色语音与视频卸载时暂停的清理逻辑。早期 15/18 或旧版 84 项结果均不能替代本次结果。
 
-## 给接手助手的任务摘要
+## 原始交接任务摘要（历史记录）
 
 继续维护本仓库 `main` 的 React 源码。先读 `site/AGENTS.md` 和 `design-qa.md`，安装依赖并复现手机主题按钮遮挡，完成以上待办。保留纯前端、同源素材、循环视频；不要重新引入官网编译 JS、SDK、登录或下载。不要提交依赖、构建产物或截图。当前检查点尚未完成最终验收；个人网页定制留待用户后续要求。

@@ -2,7 +2,9 @@
 
 明日方舟官网的纯前端本地展示项目，现已迁移为 React + Vite 源码。页面由独立组件、本地 JSON 数据和静态素材组成，不再加载原站的 Next.js 编译包或业务 SDK。
 
-**当前是源码拆分的阶段性检查点，尚未完成全部视觉验收。** 接手开发先阅读 [HANDOFF.md](HANDOFF.md)，验证结果与已知问题见 [design-qa.md](design-qa.md)。
+**已完成交接清单中的响应式与媒体交互修复。** 开发背景见 [HANDOFF.md](HANDOFF.md)，当前验证结果、验收步骤和剩余限制见 [design-qa.md](design-qa.md)。
+
+在线预览：<https://arknights-replica.pages.dev/>。个人网页的内容与品牌定制尚未开始。
 
 原站：<https://ak.hypergryph.com/>。页面内容快照日期：2026-11-11。
 
@@ -64,8 +66,12 @@ npm run test:sites --prefix site
 npm run test:ui --prefix site
 ```
 
-UI 测试使用本机 Google Chrome，覆盖桌面 1440 × 900 与手机 390 × 844。测试会启动静态服务，或复用 4173 端口已有服务；测试前须确保该端口提供当前构建。无 Chrome 时需要安装浏览器或调整 `site/playwright.config.mjs`。
+UI 测试默认使用本机 Google Chrome，覆盖桌面 1440 × 900、手机 390 × 844，并额外检查 1280 × 720 和 320 × 568 的主题详情。测试会启动当前生产构建的静态服务；4173 已被占用时明确报错，避免误测旧服务。
 
-当前构建通过，托管测试 4/4 通过，UI 测试 17/18 通过。手机主题按钮遮挡及图集等视觉问题尚待修复，详见交接文档。旧版本“84 项检查通过”不代表本次源码重写已全部通过。
+在 `site` 目录可执行 `npx playwright install chromium`，再以 `PLAYWRIGHT_BROWSER_CHANNEL=chromium npm run test:ui` 使用 Playwright 自带的 Chromium（Linux/macOS shell）。已有 Chromium 可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` 指定。
+
+`PLAYWRIGHT_BASE_URL` 可指向部署地址；指定后不启动本地服务器，测试仍只允许访问该同源地址。
+
+当前构建通过，托管测试 4/4、UI 回归 22/22 通过。Cloudflare Pages 每次手动部署会先运行同一套构建与回归检查，失败时不会发布。Git 推送自动部署仍关闭。具体环境、覆盖边界与未完成事项见验证记录；这些检查不等于所有设备和浏览器的完整视觉验收。
 
 原站图像、字体、音视频及品牌素材的权利归原权利人所有。
