@@ -18,6 +18,14 @@
   visibility: visible;
 }
 
+@media (orientation:landscape) {
+  .gallery-celebReview .gallery-back {
+    top: 8rem;
+    bottom: auto;
+    left: 8.125rem;
+  }
+}
+
 @media (orientation:portrait) {
   .gallery-celebReview {
     padding: 9.375rem 5.75rem 12rem 0;
@@ -25,7 +33,7 @@
   }
   .gallery-celebReview .gallery-_celebReview {
     width: 100%;
-    padding: 10rem 1.25rem 5.75rem 7.875rem;
+    padding: 14rem 1.25rem 5.75rem 2rem;
     border-bottom: 1px solid hsla(0,0%,100%,.5);
     display: flex;
     flex-direction: column;
@@ -48,7 +56,9 @@
     background-color: unset;
     position: static;
     width: auto;
-    height: 18.25rem;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
   }
 }
 
@@ -100,8 +110,9 @@
 @media (orientation:portrait) {
   .gallery-celebReview .gallery-timeline {
     left: 2rem;
-    top: 50%;
-    transform: translateY(-50%);
+    right: 1.25rem;
+    top: 2rem;
+    transform: none;
   }
 }
 
@@ -128,8 +139,30 @@
 
 @media (orientation:portrait) {
   .gallery-celebReview .gallery-timeline .gallery-monthSelector {
-    margin-top: 0;
+    margin-top: 1rem;
     height: auto;
+    width: 100%;
+  }
+  .gallery-celebReview .gallery-months {
+    flex-direction: row;
+    gap: .5rem;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    padding: 6px 0;
+  }
+  .gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-months .gallery-month {
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
+    padding: .5rem;
+  }
+  .gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-months .gallery-month .gallery-dash {
+    display: none;
+  }
+  .gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-months .gallery-month .gallery-text {
+    margin-left: 0;
+    transform-origin: center;
   }
 }
 
@@ -138,7 +171,7 @@
   display: flex;
   align-items: center;
   padding: 1rem 0;
-  transition: color .3;
+  transition: color .3s;
 }
 
 .gallery-celebReview .gallery-timeline .gallery-monthSelector .gallery-month .gallery-dash {
@@ -244,7 +277,13 @@
   height: 100%;
   pointer-events: none;
   background-color: #fff;
+  opacity: 0;
   animation: gallery-fadeOut .6s forwards;
+}
+
+@keyframes gallery-fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 .gallery-celebReview .gallery-list .gallery-item:after {
@@ -270,9 +309,9 @@
 
 @media (orientation:portrait) {
   .gallery-celebReview .gallery-list {
-    margin-top: 3.75rem;
+    margin-top: 2rem;
     width: auto;
-    height: 25rem;
+    height: auto;
   }
   .gallery-celebReview .gallery-list .gallery-swiper {
     margin-left: -1rem;

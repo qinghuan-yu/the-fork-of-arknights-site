@@ -404,3 +404,144 @@ body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
     content: none;
   }
 }
+
+/* Keep portrait controls in separate rows. Absolute bottom offsets let the
+   return button cover the video action, particularly with multiline titles. */
+@media (orientation: portrait) {
+  .topic-container.topic-active {
+    display: flex;
+    flex-direction: column;
+    padding-top: 9.375rem;
+    padding-bottom: max(5rem, env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+  }
+
+  .topic-container .topic-bgWrapper {
+    pointer-events: none;
+  }
+
+  .topic-container .topic-tabList {
+    position: relative;
+    top: auto;
+    flex-shrink: 0;
+    padding: 0 5.75rem 0 1.875rem;
+  }
+
+  .topic-container .topic-tabList .topic-_tabList {
+    width: max-content;
+    min-width: 100%;
+    padding: 12px 0;
+  }
+
+  .topic-container .topic-tabList .topic-tabItem {
+    min-height: 44px;
+  }
+
+  .topic-container .topic-topicInfo {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    flex-shrink: 0;
+    margin: auto 5.75rem 0 1.875rem;
+    padding-top: clamp(120px, 20dvh, 240px);
+    min-width: 0;
+  }
+
+  .topic-container .topic-topicInfo .topic-subtitle {
+    overflow-wrap: anywhere;
+  }
+
+  .topic-container .topic-topicInfo .topic-actions {
+    flex-wrap: wrap;
+    gap: 16px 20px;
+  }
+
+  .topic-container .topic-topicInfo .topic-actions .topic-action {
+    min-height: 44px;
+    max-width: 100%;
+    align-items: flex-start;
+    padding: 8px 0 16px;
+  }
+
+  .topic-container .topic-topicInfo .topic-actions .topic-action + .topic-action {
+    margin-left: 0;
+  }
+
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-primaryText {
+    flex-shrink: 1;
+    line-height: 1.4;
+  }
+
+  .topic-container .topic-back {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    order: 1;
+    align-self: flex-start;
+    flex-shrink: 0;
+    min-height: 44px;
+    margin: 24px 5.75rem 8px 1.875rem;
+  }
+
+  .topic-container .topic-navContainer {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    order: 2;
+    flex-shrink: 0;
+    height: 44px;
+  }
+
+  .topic-container .topic-navContainer .topic-navItem {
+    position: relative;
+    background: transparent;
+  }
+
+  .topic-container .topic-navContainer .topic-navItem::after {
+    content: '';
+    position: absolute;
+    inset: 20px 0;
+    background: #ababab;
+  }
+
+  .topic-container .topic-navContainer .topic-navItem.topic-active::after {
+    background: #18d1ff;
+  }
+}
+
+/* The desktop return control must not occupy the bottom-anchored title block. */
+@media (orientation: landscape) {
+  .topic-container .topic-back {
+    top: 9rem;
+    bottom: auto;
+    left: 9rem;
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+@media (orientation: portrait) and (max-width: 360px) {
+  .topic-container .topic-topicInfo {
+    padding-top: clamp(80px, 16dvh, 120px);
+  }
+
+  .topic-container .topic-topicInfo .topic-subtitle {
+    font-size: max(18px, 2.5rem);
+    line-height: 1.15;
+  }
+
+  .topic-container .topic-topicInfo .topic-title {
+    font-size: max(22px, 3rem);
+    line-height: 1.15;
+  }
+
+  .topic-container .topic-tabList .topic-tabItem .topic-text,
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-primaryText {
+    font-size: 12px;
+  }
+
+  .topic-container .topic-topicInfo .topic-actions .topic-action .topic-subText {
+    font-size: 9px;
+  }
+}

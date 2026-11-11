@@ -168,7 +168,13 @@
   height: 100%;
   pointer-events: none;
   background-color: #fff;
+  opacity: 0;
   animation: video-fadeOut .6s forwards;
+}
+
+@keyframes video-fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 .video-videoHall .video-list .video-item:after {

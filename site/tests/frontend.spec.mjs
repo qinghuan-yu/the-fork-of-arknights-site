@@ -3,11 +3,12 @@ import fs from 'node:fs';
 
 const external = new WeakMap();
 const errors = new WeakMap();
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, baseURL }) => {
+  const origin = new URL(baseURL).origin;
   external.set(page, []); errors.set(page, []);
   await page.route('**/*', route => {
     const url = route.request().url();
-    if (/^https?:/.test(url) && !url.startsWith('http://127.0.0.1:4173/')) {
+    if (/^https?:/.test(url) && !url.startsWith(origin + '/')) {
       external.get(page).push(url); return route.abort();
     }
     if (/\/(?:vendor|_next|api)\//.test(url)) errors.get(page).push('旧版请求：' + url);
@@ -93,6 +94,7 @@ test('图集年月、预览与返回', async ({ page }, info) => {
   await expect(page.getByRole('dialog')).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).toHaveCount(0);
+  await expect.poll(() => page.locator('.gallery-cover img').evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
   await page.screenshot({ path: info.outputPath('gallery.png') });
   await page.locator('.gallery-back').click();
   await expect(page.locator('.media-moduleMenu')).toBeVisible();
@@ -144,4 +146,65 @@ test('生产入口没有旧编译包或 SDK 引导', () => {
   const html = fs.readFileSync(new URL('../dist/client/index.html', import.meta.url), 'utf8');
   expect(html).not.toMatch(/_next|__next_f|HG_SDK|local-runtime|vendor/);
   expect(fs.existsSync(new URL('../public/vendor', import.meta.url))).toBe(false);
+});
+
+
+test('缩略图淡出与图集月份命中区域', async ({ page }, info) => {
+  await navigate(page, 'media');
+  await page.locator('.media-moduleMenu').getByRole('button', { name: 'GALLERY', exact: true }).click();
+  await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
+  await expect.poll(() => page.locator('.gallery-item.gallery-active').evaluate(element => Number(getComputedStyle(element, '::before').opacity))).toBe(0);
+  await page.getByLabel('图集年份').selectOption('2021');
+  const month = page.locator('.gallery-month[aria-pressed="true"]');
+  await expect(month).toHaveAttribute('aria-label', '4月');
+  const monthBox = await month.boundingBox();
+  const stripBox = await page.locator('.gallery-months').boundingBox();
+  expect(monthBox.x).toBeGreaterThanOrEqual(stripBox.x - 1);
+  expect(monthBox.x + monthBox.width).toBeLessThanOrEqual(stripBox.x + stripBox.width + 1);
+  if (info.project.name === 'mobile') {
+    expect(monthBox.width).toBeGreaterThanOrEqual(44);
+    expect(monthBox.height).toBeGreaterThanOrEqual(44);
+    const timeline = await page.locator('.gallery-timeline').boundingBox();
+    const cover = await page.locator('.gallery-cover').boundingBox();
+    expect(timeline.y + timeline.height).toBeLessThanOrEqual(cover.y + 1);
+  }
+  const cover = page.locator('.gallery-cover img');
+  await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
+  const source = await cover.getAttribute('src');
+  for (let iteration = 0; iteration < 3; iteration++) {
+    await page.getByRole('button', { name: '放大图片' }).click();
+    await expect(page.getByRole('dialog')).toBeVisible();
+    if (iteration % 2) await page.getByRole('button', { name: '关闭预览' }).click();
+    else await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog')).toHaveCount(0);
+    await expect(cover).toHaveAttribute('src', source);
+    await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
+  }
+  await page.locator('.gallery-back').click();
+  await page.locator('.media-moduleMenu').getByRole('button', { name: 'VIDEO', exact: true }).click();
+  await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
+  await expect.poll(() => page.locator('.video-item.video-active').evaluate(element => Number(getComputedStyle(element, '::before').opacity))).toBe(0);
+  await page.locator('.video-back').click();
+});
+
+test('窄短屏主题按钮与重复弹窗可用', async ({ page }, info) => {
+  await page.setViewportSize(info.project.name === 'mobile' ? { width: 320, height: 568 } : { width: 1280, height: 720 });
+  await navigate(page, 'more');
+  for (const name of ['集成战略', '生息演算']) {
+    await page.locator('.more-listItem').filter({ hasText: name }).click();
+    const tabs = page.locator('.topic-tabItem');
+    for (const position of [0, (await tabs.count()) - 1]) {
+      await tabs.nth(position).click();
+      const action = page.locator('.topic-action').first();
+      await action.scrollIntoViewIfNeeded();
+      if (info.project.name === 'mobile') expect((await action.boundingBox()).height).toBeGreaterThanOrEqual(44);
+      await action.click();
+      await expect(page.locator('dialog video')).toBeVisible();
+      await page.keyboard.press('Escape');
+      await expect(page.getByRole('dialog')).toHaveCount(0);
+    }
+    await page.locator('.topic-back').click();
+    await expect(page.locator('.more-listItem').first()).toBeVisible();
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(info.project.name === 'mobile' ? 320 : 1280);
 });

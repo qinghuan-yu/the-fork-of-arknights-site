@@ -15,11 +15,11 @@ export function TopicView({ title, topics, onReturn, active }) {
     <div className="topic-bgMask" /><div className="topic-tabList"><div className="topic-_tabList">{topics.map((entry, i) => <button type="button" key={entry.cid} className={`topic-tabItem ${index === i ? 'topic-active' : ''}`} aria-pressed={index === i} onClick={() => setIndex(i)}><span className="topic-text">{entry.content.title}</span><span className="topic-icon">›</span></button>)}</div></div>
     <div className="topic-floatingText">{title}</div>
     <div className="topic-topicInfo content-enter" key={`info-${index}`}><div className="topic-subtitle">{topic.subtitle}</div><h2 className="topic-title">{topic.title}</h2><div className="topic-titleLine" />
-      <div className="topic-actions">{topic.buttons.map((button, i) => <button type="button" key={i} className="topic-action" onClick={() => setVideo(button.primaryText)}>
+      <div className="topic-actions">{topic.buttons.map((button, i) => <button type="button" key={i} className="topic-action" aria-haspopup="dialog" onClick={() => setVideo(button.primaryText)}>
         <span className="topic-flag" style={{ backgroundColor: button.themeColor }} /><span className="topic-subText">{button.subText}</span><span className="topic-primaryText">{button.primaryText}</span><span className="topic-icon">▷</span>
       </button>)}</div><div className="topic-actionsLine" />
     </div>
-    <div className="topic-navContainer">{topics.map((entry, i) => <button type="button" className={`topic-navItem ${index === i ? 'topic-active' : ''}`} key={entry.cid} aria-label={`切换至${entry.content.title}`} onClick={() => setIndex(i)} />)}</div>
+    <div className="topic-navContainer">{topics.map((entry, i) => <button type="button" className={`topic-navItem ${index === i ? 'topic-active' : ''}`} key={entry.cid} aria-label={`切换至${entry.content.title}`} aria-pressed={index === i} onClick={() => setIndex(i)} />)}</div>
     <BackButton className="topic-back" onClick={onReturn} />
     {video && active && <Modal title={video} onClose={() => setVideo(null)}><VideoPlayer /><h2 className="player-title">{topic.title} · {video}</h2></Modal>}
   </div>;
