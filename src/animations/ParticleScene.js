@@ -112,6 +112,7 @@ export class ParticleScene {
     window.removeEventListener('pointermove', this.onPointer);
     document.removeEventListener('pointerleave', this.onLeave);
     document.removeEventListener('visibilitychange', this.onVisibility);
+    // React may reuse this canvas on re-entry; forceContextLoss() breaks that path.
     this.geometry.dispose(); this.material.dispose(); this.renderer.dispose();
   }
 }

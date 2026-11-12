@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 // 无第三方运行依赖的本地静态服务，支持视频拖动所需的 Range 请求。
 const directory = path.dirname(fileURLToPath(import.meta.url));
-const root = path.join(directory, 'site', 'dist', 'client');
+const root = path.resolve(directory, '..', 'dist', 'client');
 const port = Number(process.env.PORT || 4173);
 const mime = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff': 'font/woff', '.woff2': 'font/woff2', '.mp3': 'audio/mpeg', '.wav': 'audio/wav', '.mp4': 'video/mp4', '.m3u8': 'application/vnd.apple.mpegurl', '.ts': 'video/mp2t' };
 const server = http.createServer((request, response) => {

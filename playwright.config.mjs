@@ -21,7 +21,7 @@ export default defineConfig({
     { name: 'mobile', use: { viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true } },
   ],
   webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
-    command: 'node ../server.mjs',
+    command: 'npm run preview',
     url: baseURL,
     // Do not accidentally verify a stale build or a different local application.
     reuseExistingServer: false,

@@ -3,7 +3,7 @@
  * Optional asset-maintenance tool; never runs during npm build.
  * Requires Node.js, ffmpeg and ffprobe on PATH. No encoding is performed.
  *
- * From site/: node scripts/segment-background-videos.mjs
+ * From the repository root: node scripts/segment-background-videos.mjs
  *   Reads the original assets from Git checkpoint 13606c6.
  * Or: node scripts/segment-background-videos.mjs --source-dir /path/to/original/video
  * Or: node scripts/segment-background-videos.mjs --git-ref 13606c6 --output-dir /tmp/video
@@ -61,6 +61,7 @@ try {
     const target = path.join(scratch, name, 'target');
     mkdirSync(source, { recursive: true });
     mkdirSync(target, { recursive: true });
+    // The original Git checkpoint predates the root-level frontend layout.
     const fetch = (filename) => options['--source-dir']
       ? readFileSync(path.join(path.resolve(options['--source-dir']), filename))
       : run('git', ['show', `${options['--git-ref']}:site/public/assets/video/${filename}`], null);

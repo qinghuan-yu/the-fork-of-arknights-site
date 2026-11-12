@@ -2,10 +2,10 @@ node_modules/
 .capture/
 source.html
 *.log
-site/dist/
+dist/
 **/__pycache__/
-site/test-results/
-site/playwright-report/
+test-results/
+playwright-report/
 .env
 .env.*
 !.env.example

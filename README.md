@@ -1,81 +1,70 @@
-# the fork of arknights site
+# Arknights Site
 
-明日方舟官网的纯前端本地展示项目，现已迁移为 React + Vite 源码。页面由独立组件、本地 JSON 数据和静态素材组成，不再加载原站的 Next.js 编译包或业务 SDK。
+基于 React + Vite 的明日方舟官网前端复刻，使用本地数据和静态素材，保留响应式导航、新闻轮播、干员语音、Three.js 粒子场景、图集与主题展示。
 
-**已完成交接清单中的响应式与媒体交互修复。** 开发背景见 [HANDOFF.md](HANDOFF.md)，当前验证结果、验收步骤和剩余限制见 [design-qa.md](design-qa.md)。
+[在线预览](https://arknights-replica.pages.dev/) · [原站](https://ak.hypergryph.com/)
 
-在线预览：<https://arknights-replica.pages.dev/>。个人网页的内容与品牌定制尚未开始。
+纯前端，无业务 API、账号系统或环境密钥。内容为 2026-11-11 的静态快照；大型宣传片使用 12 秒本地循环视频占位。下载、登录、充值、客服及社交入口已移除。
 
-原站：<https://ak.hypergryph.com/>。页面内容快照日期：2026-11-11。
+## 快速开始
 
-## 源码与性能
-
-本仓库保留编译前 React 源码，浏览器使用的压缩文件由构建生成。2026-11-12 的按需分区、无损视频分片与粒子优化记录见 [performance.md](performance.md)。开发时直接修改 `site/src/`，不要编辑 `dist` 或恢复旧官网包。
-
-## 启动开发
-
-需要 Node.js 20.19+ 或 22.12+（本次使用 Node.js 24）和 npm。在仓库根目录执行：
+需要 Node.js 20.19+ 或 22.12+，以及 npm。
 
 ```sh
-npm ci --prefix site
-npm run dev --prefix site
+git clone https://github.com/qinghuan-yu/the-fork-of-arknights-site.git
+cd the-fork-of-arknights-site
+npm ci
+npm run dev
 ```
 
-打开 <http://127.0.0.1:4173/>。修改 `site/src/` 即可开发，无需 Python、采集脚本、原站服务或环境密钥。
+打开 <http://127.0.0.1:4173/>。所有命令均在仓库根目录执行；`npm start` 也可启动开发服务。
 
-生产构建与本地预览：
+## 常用命令
 
 ```sh
-npm run build --prefix site
-node server.mjs
+npm run build     # 生产构建，静态文件输出至 dist/client
+npm run preview   # 本地预览生产构建
+npm test          # 托管、粒子计算和构建/视频预算检查，需先构建
+npm run test:ui   # Playwright 桌面与手机交互回归，需先构建
+npm run format   # 格式化前端源码与 UI 测试
 ```
 
-构建后也可在 Windows 双击 `start.cmd`。开发服务器和静态预览共用 4173 端口，请勿同时启动。不要直接双击 `index.html`。
-
-## 文件结构
-
-| 路径 | 用途 |
-| --- | --- |
-| `site/index.html`、`site/src/main.jsx` | Vite 页面入口与 React 挂载 |
-| `site/src/App.jsx` | 六个主分区、导航状态与页面装饰 |
-| `site/src/sections/` | 首页、情报、干员、设定、媒体、更多内容 |
-| `site/src/components/` | 导航、图集、视频、主题、弹窗、语音、粒子画布 |
-| `site/src/hooks/` | 分区导航、响应式状态、HLS 视频加载 |
-| `site/src/animations/ParticleScene.js` | Three.js 粒子渲染、模型变形与指针交互 |
-| `site/src/data/` | 新闻、角色、世界观、图集、视频和主题数据 |
-| `site/src/styles/`、`site/src/styles.css` | 分区样式与全局布局 |
-| `site/public/assets/` | 图片、字体、音频、视频和粒子模型 |
-| `site/tests/` | 页面测试与静态托管适配测试 |
-| `server.mjs`、`start.cmd` | 本机静态预览与 Windows 启动入口 |
-| `site/worker/`、`site/.openai/`、`site/scripts/` | 可选的 Sites 静态托管适配，不是业务后端 |
-
-依赖清单和锁文件纳入仓库；`node_modules/`、`site/dist/`、截图、日志及本地采集档案不提交。运行所需媒体素材直接包含在仓库中。
-
-## 展示功能
-
-- 首页背景视频、背景音乐、桌面导航、手机菜单与分区切换。
-- 新闻轮播与分类，六名干员的立绘、精英化和语音。
-- 六项世界观及粒子模型切换，本地图集、视频目录和主题展示。
-
-已移除下载、登录注册、充值、客服、社交平台及其他站外服务入口。页面只读取同源静态文件，不依赖业务 API。新闻和目录不会自动更新。
-
-首页横竖屏背景视频为本地 HLS，以约 1.25 秒无损分片按需缓冲；20 部大型宣传片和玩法视频使用一个 12 秒本地循环片段占位，保留封面和目录。图片、字体、音频和粒子模型均在本地。
-
-## 验证
-
-先完成构建，再执行：
+UI 测试默认使用本机 Google Chrome；使用 Playwright Chromium 时：
 
 ```sh
-npm run test:sites --prefix site
-npm run test:ui --prefix site
+npx playwright install chromium
+PLAYWRIGHT_BROWSER_CHANNEL=chromium npm run test:ui
 ```
 
-UI 测试默认使用本机 Google Chrome，覆盖桌面 1440 × 900、手机 390 × 844，并额外检查 1280 × 720 和 320 × 568 的主题详情。测试会启动当前生产构建的静态服务；4173 已被占用时明确报错，避免误测旧服务。
+环境变量示例适用于 Linux/macOS shell。也可用 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` 指定浏览器路径，或用 `PLAYWRIGHT_BASE_URL` 检查已部署站点（仍需本地构建）。本地 UI 测试自动启动静态服务，请先停止占用 4173 端口的服务。
 
-在 `site` 目录可执行 `npx playwright install chromium`，再以 `PLAYWRIGHT_BROWSER_CHANNEL=chromium npm run test:ui` 使用 Playwright 自带的 Chromium（Linux/macOS shell）。已有 Chromium 可通过 `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` 指定。
+## 项目结构
 
-`PLAYWRIGHT_BASE_URL` 可指向部署地址；指定后不启动本地服务器，浏览器测试仍只允许访问该同源地址。此模式仍需先完成本地构建：入口静态检查读取本地 `site/dist/client/index.html`，不代替远端产物核验。
+```text
+src/         # React 组件、分区、hooks、样式及本地 JSON 数据
+public/      # 图片、字体、音视频和粒子模型
+tests/       # Node.js 检查与 Playwright 回归
+scripts/     # 静态预览、构建打包与可选的视频维护工具
+worker/      # Sites 静态托管适配
+.openai/     # Sites 打包配置
+index.html   # 应用入口
+package.json # npm 脚本与依赖
+```
 
-当前构建通过，13/13 项默认检查（含 4 项托管、5 项粒子正确性、4 项性能预算）和 30/30 项 UI 回归通过。可选 CPU 基准默认跳过。Cloudflare Pages 每次手动部署会先运行同一套构建与回归检查，失败时不会发布。Git 推送自动部署仍关闭。具体环境、覆盖边界与未完成事项见验证记录；这些检查不等于所有设备和浏览器的完整视觉验收。
+日常开发直接修改 `src/`，不编辑构建产物。依赖目录、`dist/`、测试输出及采集缓存不纳入版本控制。`test:sites` 保留为 `npm test` 的兼容入口。
 
-原站图像、字体、音视频及品牌素材的权利归原权利人所有。
+## 部署
+
+在仓库根目录执行构建与测试后，将 `dist/client/` 上传至静态托管服务。资源使用 `/assets/` 绝对路径，默认部署在域名根目录；子路径部署需要适配资源路径。无需业务后端。
+
+Cloudflare Pages 的构建根目录为仓库根目录（留空），输出目录为 `dist/client`。现有项目手动部署前会执行构建、Node.js 检查和 UI 回归；Git 推送自动部署关闭。Sites 所需的 `dist/server/` 和 `dist/.openai/` 由构建脚本同时生成，普通静态托管只需 `dist/client/`。
+
+## 已知限制与贡献
+
+- 新闻和目录不会自动更新，大型视频为占位内容。
+- Three.js 分块较大，但仅在进入世界观时加载；真实手机、Safari/Firefox 和完整无障碍体验仍需专项验证。
+- 欢迎提交 Issue 或 Pull Request。修改后请执行构建、`npm test` 和 UI 回归，保持纯前端、同源素材与现有交互范围。
+
+## 素材与许可
+
+页面内容、部分样式及图像、字体、音视频、品牌素材来源于明日方舟官网，相关权利归原权利人所有。仓库尚未声明代码开源许可证，公开源码不代表对第三方素材的使用或再分发授权；复用前请确认相应许可。
