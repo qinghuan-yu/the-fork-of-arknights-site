@@ -5,7 +5,6 @@ import gallery from '../data/gallery.json';
 import { BackButton } from './BackButton';
 import { Modal } from './Modal';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import '../styles/gallery.css';
 
 export function GalleryView({ onReturn }) {
   const [year, setYear] = useState(gallery.defaultYear);

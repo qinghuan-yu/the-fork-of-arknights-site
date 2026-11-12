@@ -5,7 +5,6 @@ import operators from '../data/operators.json';
 import camps from '../data/camps.json';
 import { CharacterVoice } from '../components/CharacterVoice';
 import { Icon } from '../components/Icon';
-import '../styles/operator.css';
 
 export default function OperatorSection({ active }) {
   const [index, setIndex] = useState(0);

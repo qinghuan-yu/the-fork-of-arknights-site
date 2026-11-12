@@ -3,7 +3,6 @@ import world from '../data/world.json';
 import { ParticleCanvas } from '../components/ParticleCanvas';
 import { BackButton } from '../components/BackButton';
 import { Icon } from '../components/Icon';
-import '../styles/world.css';
 
 export default function WorldSection({ active }) {
   const [index, setIndex] = useState(null);

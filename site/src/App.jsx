@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Icon } from './components/Icon';
 import { useSectionNavigation } from './hooks/useSectionNavigation';
 import { sections } from './data/sections';
 import HomeSection from './sections/HomeSection';
-import NewsSection from './sections/NewsSection';
-import OperatorSection from './sections/OperatorSection';
-import WorldSection from './sections/WorldSection';
-import MediaSection from './sections/MediaSection';
-import MoreSection from './sections/MoreSection';
+const NewsSection = lazy(() => import('./sections/NewsSection'));
+const OperatorSection = lazy(() => import('./sections/OperatorSection'));
+const WorldSection = lazy(() => import('./sections/WorldSection'));
+const MediaSection = lazy(() => import('./sections/MediaSection'));
+const MoreSection = lazy(() => import('./sections/MoreSection'));
 
 const components = [HomeSection, NewsSection, OperatorSection, WorldSection, MediaSection, MoreSection];
 const lights = Array.from({ length: 20 }, (_, i) => ({ x: (i * 37) % 100, y: (i * 61) % 100, delay: -i * 0.7 }));
@@ -16,12 +16,19 @@ const lights = Array.from({ length: 20 }, (_, i) => ({ x: (i * 37) % 100, y: (i 
 export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { index, navigate } = useSectionNavigation(menuOpen);
+  // Load a section on its first visit, then retain its local selection and history.
+  const [visited, setVisited] = useState(() => new Set([index]));
+  useEffect(() => {
+    setVisited(previous => previous.has(index) ? previous : new Set([...previous, index]));
+  }, [index]);
   return <>
     <Header index={index} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
     <main id="main-content" className="page-sections" inert={menuOpen}>
       {components.map((Section, position) => <section key={sections[position].id} id={`section-${sections[position].id}`} aria-label={sections[position].title}
         className={`page-section ${index === position ? 'is-active' : ''}`} inert={index !== position} aria-hidden={index !== position}>
-        <Section active={index === position} />
+        {(index === position || visited.has(position)) && <Suspense fallback={<div className="section-loading" role="status">正在加载{sections[position].title}…</div>}>
+          <Section active={index === position} />
+        </Suspense>}
       </section>)}
     </main>
     <div className="page-grid" aria-hidden="true" />

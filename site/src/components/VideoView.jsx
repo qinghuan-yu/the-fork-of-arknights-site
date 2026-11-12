@@ -6,7 +6,6 @@ import { VideoPlayer } from './VideoPlayer';
 import { Modal } from './Modal';
 import { BackButton } from './BackButton';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import '../styles/video.css';
 
 export function VideoView({ onReturn, active }) {
   const [index, setIndex] = useState(0);

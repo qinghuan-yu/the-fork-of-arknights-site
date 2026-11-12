@@ -4,7 +4,6 @@ import { GalleryView } from '../components/GalleryView';
 import { VideoView } from '../components/VideoView';
 import { Icon } from '../components/Icon';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import '../styles/media.css';
 
 const labels = { GALLERY: ['游戏图集', '节事回顾'], VIDEO: ['影像资料', '宣传影像与精彩瞬间'] };
 const percent = (value, total) => `${value / total * 100}%`;

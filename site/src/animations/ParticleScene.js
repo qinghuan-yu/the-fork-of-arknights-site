@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { createParticlePhases, updateParticlePositions } from './particleMath.js';
 
 // 粒子位置直接写入 GPU 缓冲区，避免逐帧触发 React 渲染。
 export class ParticleScene {
@@ -6,6 +7,7 @@ export class ParticleScene {
     this.canvas = canvas;
     this.reducedMotion = reducedMotion;
     this.count = matchMedia('(orientation: portrait)').matches ? 6000 : 10000;
+    this.phases = createParticlePhases(this.count);
     this.positions = new Float32Array(this.count * 3);
     this.targets = new Float32Array(this.count * 3);
     this.opacities = new Float32Array(this.count);
@@ -97,17 +99,7 @@ export class ParticleScene {
   tick = time => {
     const blend = 1 - Math.exp(-Math.min((time - this.previous) / 1000, 0.05) * 5);
     this.previous = time;
-    for (let i = 0; i < this.count; i++) {
-      const p = i * 3;
-      const driftX = Math.sin(time * 0.0005 + i * 0.7) * 1.3;
-      const driftY = Math.cos(time * 0.0004 + i * 0.3) * 1.3;
-      const dx = this.positions[p] - this.pointer.x;
-      const dy = this.positions[p + 1] - this.pointer.y;
-      const distance = Math.max(1, Math.hypot(dx, dy));
-      const repel = Math.max(0, 1 - distance / 95) * 32;
-      this.positions[p] += (this.targets[p] + driftX + dx / distance * repel - this.positions[p]) * blend;
-      this.positions[p + 1] += (this.targets[p + 1] + driftY + dy / distance * repel - this.positions[p + 1]) * blend;
-    }
+    updateParticlePositions(this.positions, this.targets, this.phases, this.pointer, time, blend);
     this.geometry.attributes.position.needsUpdate = true;
     this.renderer.render(this.scene, this.camera);
     this.frame = requestAnimationFrame(this.tick);

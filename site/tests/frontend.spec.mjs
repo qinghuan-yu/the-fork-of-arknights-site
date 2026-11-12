@@ -25,6 +25,7 @@ test.afterEach(async ({ page }) => {
 const navigate = async (page, id) => {
   await page.goto('/#' + id);
   await expect(page.locator('#section-' + id)).toHaveClass(/is-active/);
+  await expect(page.locator('.page-section.is-active .section-loading')).toHaveCount(0);
   await page.waitForTimeout(650);
 };
 
@@ -215,4 +216,72 @@ test('窄短屏主题按钮与重复弹窗可用', async ({ page }, info) => {
     await expect(page.locator('.more-listItem').first()).toBeVisible();
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(info.project.name === 'mobile' ? 320 : 1280);
+});
+
+test('首页只挂载当前分区且短分片视频可播放', async ({ page }) => {
+  const requests = [];
+  page.on('request', request => requests.push(request.url()));
+  await navigate(page, 'index');
+  await expect(page.locator('.home-background-video')).toBeVisible();
+  await expect.poll(() => page.locator('.home-background-video').evaluate(video => video.currentTime), { timeout: 15000 }).toBeGreaterThan(0.2);
+  for (const id of ['information', 'operator', 'world', 'media', 'more']) {
+    await expect(page.locator(`#section-${id} > *`)).toHaveCount(0);
+  }
+  expect(requests.filter(url => /(?:News|Operator|World|Media|More)Section-|ParticleScene-|scrollbar-/.test(url))).toEqual([]);
+  // No hidden-section DOM means no eager banners, portraits or media artwork.
+  await expect(page.locator('main img')).toHaveCount(0);
+  expect(requests.some(url => /PV04_(?:landscape|portrait)\.m3u8/.test(url))).toBe(true);
+  const video = await page.locator('.home-background-video').evaluate(video => ({ width: video.videoWidth, height: video.videoHeight }));
+  expect(video.width > 0 && video.height > 0).toBe(true);
+  // Seek through the loop boundary so the shortened/backward buffer is exercised.
+  await page.locator('.home-background-video').evaluate(video => { video.currentTime = video.duration - 0.2; });
+  await expect.poll(() => page.locator('.home-background-video').evaluate(video => video.currentTime > 0.2 && video.currentTime < 3 && !video.paused), { timeout: 15000 }).toBe(true);
+  // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
+  await page.evaluate(() => {
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  expect(await page.locator('.home-background-video').evaluate(video => video.paused)).toBe(true);
+  await page.evaluate(() => {
+    delete document.hidden;
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  await expect.poll(() => page.locator('.home-background-video').evaluate(video => !video.paused)).toBe(true);
+});
+
+test('直接进入分区不会下载首页视频并保留已访问状态', async ({ page }) => {
+  const requests = [];
+  page.on('request', request => requests.push(request.url()));
+  await navigate(page, 'operator');
+  const button = page.getByRole('button', { name: '选择干员 陈', exact: true });
+  await button.scrollIntoViewIfNeeded();
+  await button.click();
+  await page.getByRole('button', { name: '精英化 2', exact: true }).click();
+  await navigate(page, 'information');
+  await page.getByRole('tab', { name: '活动', exact: true }).click();
+  await navigate(page, 'operator');
+  await expect(page.locator('.operator-name')).toHaveText('陈');
+  await expect(page.locator('.operator-illust img')).toHaveAttribute('alt', '陈 精英化 2');
+  await navigate(page, 'information');
+  await expect(page.getByRole('tab', { name: '活动', exact: true })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.locator('#section-index > *')).toHaveCount(0);
+  expect(requests.filter(url => /hls\.light-|PV04_|ParticleScene-/.test(url))).toEqual([]);
+});
+
+test('快速离开未加载分区不会启动隐藏视频', async ({ page }) => {
+  await page.route('**/MoreSection-*.js', async route => {
+    await new Promise(resolve => setTimeout(resolve, 600));
+    await route.continue();
+  });
+  await navigate(page, 'index');
+  await page.evaluate(() => { location.hash = '#more'; });
+  await expect(page.locator('#section-more')).toHaveClass(/is-active/);
+  await page.evaluate(() => { location.hash = '#operator'; });
+  await expect(page.locator('.operator-name')).toBeVisible();
+  await expect(page.locator('#section-more .more-list')).toBeAttached();
+  await expect(page.locator('#section-more')).toHaveAttribute('inert', '');
+  expect(await page.locator('.home-background-video').evaluate(video => video.paused && !video.getAttribute('src'))).toBe(true);
+  await navigate(page, 'more');
+  await expect(page.locator('.more-list')).toBeVisible();
+  await expect(page.locator('.section-loading')).toHaveCount(0);
 });

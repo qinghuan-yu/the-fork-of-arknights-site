@@ -3,7 +3,6 @@ import cards from '../data/more.json';
 import themes from '../data/themes.json';
 import { TopicView } from '../components/TopicView';
 import { useMediaQuery } from '../hooks/useMediaQuery';
-import '../styles/more.css';
 
 export default function MoreSection({ active }) {
   const [view, setView] = useState(null);

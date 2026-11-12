@@ -3,7 +3,6 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { useHlsVideo } from '../hooks/useHlsVideo';
 import { Icon } from '../components/Icon';
 import assets from '../data/assets.json';
-import '../styles/home.css';
 
 export default function HomeSection({ active }) {
   const video = useRef(null);

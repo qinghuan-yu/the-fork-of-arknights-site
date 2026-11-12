@@ -3,7 +3,6 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import { BackButton } from './BackButton';
 import { Modal } from './Modal';
 import { VideoPlayer } from './VideoPlayer';
-import '../styles/topic.css';
 
 export function TopicView({ title, topics, onReturn, active }) {
   const [index, setIndex] = useState(topics.length - 1);

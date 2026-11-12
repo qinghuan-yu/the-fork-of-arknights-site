@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Scrollbar } from 'swiper/modules';
 import news from '../data/news.json';
 import { Icon } from '../components/Icon';
-import '../styles/information.css';
 
 const labels = { LATEST: '最新', ANNOUNCEMENT: '公告', ACTIVITY: '活动', NEWS: '新闻' };
 const date = seconds => new Date(seconds * 1000).toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' }).replaceAll('/', ' / ');

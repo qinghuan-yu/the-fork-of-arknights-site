@@ -1,3 +1,13 @@
+/* Keep section styles before shared overrides even when JS loads on demand. */
+@import './styles/home.css';
+@import './styles/information.css';
+@import './styles/operator.css';
+@import './styles/world.css';
+@import './styles/gallery.css';
+@import './styles/video.css';
+@import './styles/media.css';
+@import './styles/topic.css';
+@import './styles/more.css';
 @import './styles/fonts.css';
 @import './styles/header.css';
 @import './styles/navigation.css';
@@ -134,3 +144,5 @@ svg { display: block; width: 100%; height: 100%; fill: currentColor; }
   *, *:before, *:after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
   .fireflies { display: none; }
 }
+
+.section-loading { position: absolute; inset: 45% 10% auto; color: #aaa; font-size: 16px; text-align: center; }
