@@ -235,7 +235,12 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
   expect(video.width > 0 && video.height > 0).toBe(true);
   // Seek through the loop boundary so the shortened/backward buffer is exercised.
   await page.locator('.home-background-video').evaluate(video => { video.currentTime = video.duration - 0.2; });
-  await expect.poll(() => page.locator('.home-background-video').evaluate(video => video.currentTime > 0.2 && video.currentTime < 3 && !video.paused), { timeout: 15000 }).toBe(true);
+  await expect.poll(() => page.locator('.home-background-video').evaluate(video => ({
+    looped: video.currentTime > 0.2 && video.currentTime < 3 && !video.paused,
+    time: video.currentTime, duration: video.duration, paused: video.paused, readyState: video.readyState,
+    buffered: Array.from({ length: video.buffered.length }, (_, i) => [video.buffered.start(i), video.buffered.end(i)]),
+  })), { timeout: 15000 }).toMatchObject({ looped: true });
+  expect(requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url))).toHaveLength(1);
   // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
   await page.evaluate(() => {
     Object.defineProperty(document, 'hidden', { configurable: true, value: true });

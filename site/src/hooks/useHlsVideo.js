@@ -31,7 +31,9 @@ export function useHlsVideo(ref, source, active) {
           autoStartLoad: !document.hidden,
           maxBufferLength: 4,
           maxMaxBufferLength: 6,
-          backBufferLength: 3,
+          // The complete loop is only 18.125s. Retain it once downloaded so
+          // replay does not repeatedly fetch and demux the same fragments.
+          backBufferLength: 20,
         });
         hls.loadSource(source);
         hls.attachMedia(video);
