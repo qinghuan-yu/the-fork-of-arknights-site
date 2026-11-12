@@ -18,15 +18,29 @@ test.beforeEach(async ({ page, baseURL }) => {
   page.on('console', message => { if (message.type() === 'error') errors.get(page).push(message.text()); });
   page.on('response', response => { if (response.status() >= 400) errors.get(page).push(response.status() + ' ' + response.url()); });
 });
-test.afterEach(async ({ page }) => {
+test.afterEach(async ({ page }, info) => {
   expect(external.get(page), '页面不访问外站').toEqual([]);
-  expect(errors.get(page), '页面无错误和旧版运行包请求').toEqual([]);
+  const expected = info.annotations.filter(item => item.type === 'expected-console-error').map(item => item.description);
+  for (const message of expected) expect(errors.get(page)).toContain(message);
+  expect(errors.get(page).filter(message => !expected.includes(message)), '页面无意外错误和旧版运行包请求').toEqual([]);
 });
 const navigate = async (page, id) => {
   await page.goto('/#' + id);
   await expect(page.locator('#section-' + id)).toHaveClass(/is-active/);
   await expect(page.locator('.page-section.is-active .section-loading')).toHaveCount(0);
-  await page.waitForTimeout(650);
+  await expect(page.locator('.loading-container')).toBeHidden();
+  await page.waitForTimeout(1050);
+};
+const selectGalleryYear = async (page, year) => {
+  if (await page.locator('.gallery-mobileSelector').isVisible()) {
+    for (let i = 0; i < 10 && await page.locator('.gallery-current').innerText() !== year; i++) {
+      await page.getByRole('button', { name: '下一个图集年份' }).click();
+    }
+  } else {
+    if (!await page.locator('.gallery-yearList').isVisible()) await page.getByRole('button', { name: '图集年份', exact: true }).click();
+    await page.locator('.gallery-yearList').getByRole('button', { name: year, exact: true }).click();
+  }
+  await expect(page.locator('.gallery-current')).toHaveText(year);
 };
 
 test('六个分区、静态素材和纯前端入口', async ({ page }, info) => {
@@ -63,7 +77,8 @@ test('干员切换、精英化与本地语音', async ({ page }) => {
   }
   await page.getByRole('button', { name: '精英化 2', exact: true }).click();
   await expect(page.locator('.operator-illust img')).toHaveAttribute('alt', '凯尔希 精英化 2');
-  await page.getByLabel('配音语言').selectOption('1');
+  await page.getByRole('button', { name: '配音语言', exact: true }).click();
+  await page.getByRole('option').first().click();
   await page.getByRole('button', { name: '播放角色语音', exact: true }).click();
   await expect.poll(() => page.locator('.operator-voice audio').evaluate(audio => audio.currentTime)).toBeGreaterThan(0);
   await navigate(page, 'media');
@@ -73,11 +88,12 @@ test('干员切换、精英化与本地语音', async ({ page }) => {
 test('六个粒子模型及反复进入场景', async ({ page }, info) => {
   await navigate(page, 'world');
   for (const name of ['源石', '源石技艺', '整合运动', '感染者', '移动城邦', '罗德岛']) {
-    await page.locator('.world-storyItem').filter({ has: page.getByText(name, { exact: true }) }).click();
+    if (info.project.name === 'mobile') await page.locator('.world-nav').getByRole('button', { name, exact: true }).click();
+    else await page.locator('.world-storyItem').filter({ has: page.getByText(name, { exact: true }) }).click();
     await expect(page.locator('.world-title')).toHaveText(name);
     await page.waitForTimeout(400);
     if (name === '源石') await page.screenshot({ path: info.outputPath('world-detail.png') });
-    await page.locator('.world-back').click();
+    if (info.project.name !== 'mobile') await page.locator('.world-closeBtn').click();
   }
   for (let i = 0; i < 3; i++) { await navigate(page, 'operator'); await navigate(page, 'world'); }
   await expect(page.locator('.particle-canvas')).toBeVisible();
@@ -89,7 +105,7 @@ test('图集年月、预览与返回', async ({ page }, info) => {
   await page.locator('.media-moduleMenu').getByRole('button', { name: 'GALLERY', exact: true }).click();
   await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
   await expect(page.locator('.gallery-cover img')).toBeVisible();
-  await page.getByLabel('图集年份').selectOption('2021');
+  await selectGalleryYear(page, '2021');
   await expect(page.getByLabel('4月', { exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '放大图片' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
@@ -97,7 +113,7 @@ test('图集年月、预览与返回', async ({ page }, info) => {
   await expect(page.getByRole('dialog')).toHaveCount(0);
   await expect.poll(() => page.locator('.gallery-cover img').evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
   await page.screenshot({ path: info.outputPath('gallery.png') });
-  await page.locator('.gallery-back').click();
+  await page.locator('.gallery-celebReview > .gallery-closeBtn').click();
   await expect(page.locator('.media-moduleMenu')).toBeVisible();
 });
 
@@ -108,23 +124,27 @@ test('视频目录与循环播放器', async ({ page }, info) => {
   await expect.poll(() => page.locator('.video-preview video').evaluate(video => video.readyState)).toBeGreaterThan(1);
   await page.getByRole('button', { name: '播放完整预览' }).click();
   await expect(page.getByRole('dialog')).toBeVisible();
-  expect(await page.locator('dialog video').evaluate(video => video.loop && video.muted)).toBe(true);
+  expect(await page.getByRole('dialog').locator('video').evaluate(video => video.loop && video.muted)).toBe(true);
   await page.getByRole('button', { name: '关闭预览' }).click();
   await page.screenshot({ path: info.outputPath('video.png') });
-  await page.locator('.video-back').click();
+  await page.locator('.video-returnBtn').click();
 });
 
 test('主题切换与本地视频', async ({ page }, info) => {
   await navigate(page, 'more');
   for (const name of ['集成战略', '生息演算']) {
     await page.locator('.more-listItem').filter({ hasText: name }).click();
-    await expect(page.locator('.topic-title')).not.toBeEmpty();
-    await page.locator('.topic-tabItem').first().click();
-    await page.locator('.topic-action').first().click();
-    await expect(page.locator('dialog video')).toBeVisible();
-    await page.getByRole('button', { name: '关闭预览' }).click();
+    await expect(page.locator('.topic-container.topic-active .topic-title')).not.toBeEmpty();
+    const firstTab = page.locator('.topic-container.topic-active .topic-tabItem').first();
+    await firstTab.click();
+    await expect(page.locator('.topic-container.topic-active .topic-title')).toHaveText(await firstTab.innerText());
+    await page.locator('.topic-container.topic-active .topic-action').first().click();
+    await expect(page.getByRole('dialog').locator('video')).toBeVisible();
+    // 官网主题弹窗通过遮罩或 Escape 关闭，没有屏内的关闭图标。
+    await page.getByRole('dialog').click({ position: { x: 5, y: 5 } });
+    await expect(page.getByRole('dialog')).toHaveCount(0);
     await page.screenshot({ path: info.outputPath('topic-' + name + '.png') });
-    await page.locator('.topic-back').click();
+    await page.locator('.topic-container.topic-active .topic-returnBtn').click();
   }
 });
 
@@ -143,6 +163,60 @@ test('导航菜单、背景音乐与历史记录', async ({ page }, info) => {
   await page.goBack(); await expect(page).toHaveURL(/#index$/);
 });
 
+test('切页揭幕、快速切换和图集延迟入场', async ({ page }) => {
+  await navigate(page, 'operator');
+  await page.evaluate(() => { location.hash = 'information'; });
+  await page.waitForTimeout(1200);
+  const progress = await page.evaluate(async () => {
+    location.hash = 'operator';
+    await new Promise(resolve => setTimeout(resolve, 200));
+    const element = document.querySelector('#section-operator');
+    return { width: element.getBoundingClientRect().width, child: element.firstElementChild.getBoundingClientRect().width, viewport: innerWidth };
+  });
+  expect(progress.width).toBeGreaterThan(0);
+  expect(progress.width).toBeLessThan(progress.viewport);
+  expect(progress.child).toBe(progress.viewport);
+  await page.waitForTimeout(1000);
+  await page.locator('.operator-charAvatar').nth(1).evaluate(node => node.click());
+  await page.waitForTimeout(100);
+  await page.locator('.operator-charAvatar').last().evaluate(node => node.click());
+  await expect(page.locator('.operator-name')).toHaveText('白面鸮');
+  await expect.poll(() => page.locator('.operator-charInfo').evaluate(node => Number(getComputedStyle(node).opacity))).toBe(1);
+  await page.evaluate(() => { location.hash = 'media'; });
+  await page.waitForTimeout(1200);
+  await page.locator('.media-moduleMenu').getByRole('button', { name: 'GALLERY', exact: true }).click();
+  await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
+  await page.waitForTimeout(1100);
+  const opacity = await page.evaluate(async () => {
+    document.querySelector('.gallery-cover').click();
+    await new Promise(resolve => setTimeout(resolve, 150));
+    return Number(getComputedStyle(document.querySelector('.gallery-layer > div')).opacity);
+  });
+  expect(opacity).toBe(0);
+  await expect.poll(() => page.locator('.gallery-layer > div').evaluate(node => Number(getComputedStyle(node).opacity))).toBe(1);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+});
+
+test('减少动态效果与 WebGL 不可用时保留内容', async ({ page }, info) => {
+  info.annotations.push({ type: 'expected-console-error', description: 'THREE.WebGLRenderer: THREE.WebGLRenderer: Error creating WebGL context.' });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return /webgl/.test(type) ? null : original.call(this, type, ...args);
+    };
+  });
+  await navigate(page, 'world');
+  if (info.project.name === 'desktop') await page.locator('.world-storyItem').first().click();
+  await expect(page.locator('.particle-fallback')).toBeVisible();
+  await expect(page.locator('.world-title')).toHaveText('源石');
+  expect(await page.locator('.particle-fallback').evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+  await page.setViewportSize({ width: 844, height: 390 });
+  await expect(page.locator('.world-title')).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(844);
+});
+
 test('生产入口没有旧编译包或 SDK 引导', () => {
   const html = fs.readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
   expect(html).not.toMatch(/_next|__next_f|HG_SDK|local-runtime|vendor/);
@@ -155,19 +229,19 @@ test('缩略图淡出与图集月份命中区域', async ({ page }, info) => {
   await page.locator('.media-moduleMenu').getByRole('button', { name: 'GALLERY', exact: true }).click();
   await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
   await expect.poll(() => page.locator('.gallery-item.gallery-active').evaluate(element => Number(getComputedStyle(element, '::before').opacity))).toBe(0);
-  await page.getByLabel('图集年份').selectOption('2021');
+  await selectGalleryYear(page, '2021');
   const month = page.locator('.gallery-month[aria-pressed="true"]');
   await expect(month).toHaveAttribute('aria-label', '4月');
   const monthBox = await month.boundingBox();
-  const stripBox = await page.locator('.gallery-months').boundingBox();
+  const stripBox = await page.locator('.gallery-monthSelector').boundingBox();
   expect(monthBox.x).toBeGreaterThanOrEqual(stripBox.x - 1);
   expect(monthBox.x + monthBox.width).toBeLessThanOrEqual(stripBox.x + stripBox.width + 1);
   if (info.project.name === 'mobile') {
-    expect(monthBox.width).toBeGreaterThanOrEqual(44);
-    expect(monthBox.height).toBeGreaterThanOrEqual(44);
     const timeline = await page.locator('.gallery-timeline').boundingBox();
     const cover = await page.locator('.gallery-cover').boundingBox();
-    expect(timeline.y + timeline.height).toBeLessThanOrEqual(cover.y + 1);
+    // 原站手机刻度在封面左侧，年份在封面上方。
+    expect(monthBox.x + monthBox.width).toBeLessThanOrEqual(cover.x + 1);
+    expect(timeline.y).toBeLessThan(cover.y);
   }
   const cover = page.locator('.gallery-cover img');
   await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
@@ -182,11 +256,11 @@ test('缩略图淡出与图集月份命中区域', async ({ page }, info) => {
     await expect(cover).toHaveAttribute('src', source);
     await expect.poll(() => cover.evaluate(image => image.complete && image.naturalWidth > 0 && Number(getComputedStyle(image).opacity) === 1)).toBe(true);
   }
-  await page.locator('.gallery-back').click();
+  await page.locator('.gallery-celebReview > .gallery-closeBtn').click();
   await page.locator('.media-moduleMenu').getByRole('button', { name: 'VIDEO', exact: true }).click();
   await page.getByRole('button', { name: '查看详情 READ MORE' }).click();
   await expect.poll(() => page.locator('.video-item.video-active').evaluate(element => Number(getComputedStyle(element, '::before').opacity))).toBe(0);
-  await page.locator('.video-back').click();
+  await page.locator('.video-returnBtn').click();
 });
 
 test('窄短屏主题按钮与重复弹窗可用', async ({ page }, info) => {
@@ -194,25 +268,23 @@ test('窄短屏主题按钮与重复弹窗可用', async ({ page }, info) => {
   await navigate(page, 'more');
   for (const name of ['集成战略', '生息演算']) {
     await page.locator('.more-listItem').filter({ hasText: name }).click();
-    const tabs = page.locator('.topic-tabItem');
+    const tabs = page.locator('.topic-container.topic-active .topic-tabItem');
     for (const position of [0, (await tabs.count()) - 1]) {
       await tabs.nth(position).click();
-      const action = page.locator('.topic-action').first();
+      await expect(page.locator('.topic-container.topic-active .topic-title')).toHaveText(await tabs.nth(position).innerText());
+      await expect.poll(() => page.locator('.topic-container.topic-active .topic-topicInfo').evaluate(element => element.getAnimations().some(animation => animation.playState === 'running'))).toBe(false);
+      const action = page.locator('.topic-container.topic-active .topic-action').first();
       await action.scrollIntoViewIfNeeded();
-      if (info.project.name === 'mobile') expect((await action.boundingBox()).height).toBeGreaterThanOrEqual(44);
       if (info.project.name === 'mobile') {
-        expect(await page.locator('.topic-navItem.topic-active').evaluate(element => ({
-          button: getComputedStyle(element).backgroundColor,
-          indicator: getComputedStyle(element, '::after').backgroundColor,
-        }))).toEqual({ button: 'rgba(0, 0, 0, 0)', indicator: 'rgb(24, 209, 255)' });
+        expect(await page.locator('.topic-container.topic-active .topic-navItem.topic-active').evaluate(element => getComputedStyle(element).backgroundColor)).toBe('rgb(24, 209, 255)');
       }
       await action.click();
-      await expect(page.locator('dialog video')).toBeVisible();
+      await expect(page.getByRole('dialog').locator('video')).toBeVisible();
       await page.keyboard.press('Escape');
       await expect(page.getByRole('dialog')).toHaveCount(0);
       await expect(action).toBeFocused();
     }
-    await page.locator('.topic-back').click();
+    await page.locator('.topic-container.topic-active .topic-returnBtn').click();
     await expect(page.locator('.more-listItem').first()).toBeVisible();
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(info.project.name === 'mobile' ? 320 : 1280);

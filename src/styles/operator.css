@@ -632,3 +632,121 @@ body[data-mix-blend-mode="1"] .operator-container .operator-bgMask {
     color: #7ee5ff;
   }
 }
+
+.operator-voice .operator-block .operator-selector {
+  position: relative;
+  flex: auto;
+  z-index: 4;
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger {
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger .operator-label {
+  width: 100%;
+  color: #18d1ff;
+  display: flex;
+  align-items: center;
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger .operator-label .operator-text {
+  font-family: Oswald-Medium;
+  font-size: .75rem;
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger .operator-label .operator-arrow {
+  margin-left: auto;
+  width: .5rem;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-block .operator-selector .operator-trigger .operator-label .operator-arrow {
+    margin-right: .375rem;
+  }
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger .operator-current {
+  margin-top: auto;
+  background: #000;
+  border-left: 4px solid #18d1ff;
+  padding-left: .75rem;
+  font-family: SourceHanSans-Regular;
+  font-size: .875rem;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-block .operator-selector .operator-trigger .operator-current {
+    font-size: 1.25rem;
+    border-width: 2px;
+  }
+}
+
+.operator-voice .operator-block .operator-selector .operator-dropdown {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
+.operator-voice .operator-block .operator-selector .operator-dropdown .operator-option {
+  width: 100%;
+  cursor: pointer;
+  background-color: #fff;
+  color: #000;
+  border-left: 4px solid transparent;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: .75rem;
+  transition: color .3s;
+  color: #666;
+  font-family: SourceHanSans-Regular;
+  font-size: .875rem;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-block .operator-selector .operator-dropdown .operator-option {
+    font-size: 1.25rem;
+  }
+}
+
+@media (any-hover:hover) {
+  .operator-voice .operator-block .operator-selector .operator-dropdown .operator-option:hover {
+    color: #18d1ff;
+  }
+}
+
+.operator-voice .operator-block .operator-selector .operator-trigger .operator-current {
+  transition: background-color .3s,color .3s;
+}
+
+.operator-voice .operator-block .operator-selector .operator-dropdown {
+  transition: opacity .3s,visibility .3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.operator-voice .operator-block .operator-selector.operator-dropdownVisible .operator-trigger .operator-current {
+  background-color: #fff;
+  color: #000;
+}
+
+.operator-voice .operator-block .operator-selector.operator-dropdownVisible .operator-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
+.operator-voice .operator-waveform {
+  width: 13.125rem;
+  height: auto;
+  margin-left: 3.75rem;
+}
+
+@media (orientation:portrait) {
+  .operator-voice .operator-waveform {
+    margin-left: 1rem;
+  }
+}

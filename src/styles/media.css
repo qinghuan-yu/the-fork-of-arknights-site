@@ -1,4 +1,4 @@
-/* media 分区样式，类名已恢复为可维护的语义名称。 */
+/* media：依据原站布局与完整状态样式恢复。 */
 .media-container {
   position: absolute;
   top: 0;
@@ -167,6 +167,10 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   }
 }
 
+.media-home .media-mainStage .media-moduleItem .media-moduleImgIdle {
+  position: absolute;
+}
+
 .media-home .media-mainStage .media-moduleItem .media-moduleImg {
   position: relative;
 }
@@ -223,6 +227,34 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   }
 }
 
+.media-home .media-mainStage .media-moduleItem .media-logo {
+  position: absolute;
+  width: 4.875rem;
+  white-space: nowrap;
+}
+
+.media-home .media-mainStage .media-moduleItem .media-logo .media-img {
+  width: 100%;
+}
+
+.media-home .media-mainStage .media-moduleItem .media-logo .media-logoTitle {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 100%;
+  background-color: #000;
+  color: #19d1ff;
+  padding-right: .5rem;
+  padding-left: .25rem;
+  font-family: Oswald-Medium;
+  font-size: 1.25rem;
+}
+
+.media-home .media-mainStage .media-moduleItem .media-hitBox {
+  pointer-events: all;
+  position: absolute;
+}
+
 .media-home .media-mainStage .media-moduleItem .media-blockOne,.media-home .media-mainStage .media-moduleItem .media-blockTwo {
   transition: opacity .3s,transform .3s;
   opacity: 0;
@@ -236,7 +268,7 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   transform: scale(.5);
 }
 
-.media-home .media-mainStage .media-moduleItem .media-moduleImg {
+.media-home .media-mainStage .media-moduleItem .media-moduleImg,.media-home .media-mainStage .media-moduleItem .media-moduleImgIdle {
   transition: opacity .3s;
   opacity: 0;
 }
@@ -246,8 +278,13 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   opacity: 1;
 }
 
+.media-home .media-mainStage .media-moduleItem .media-logo {
+  transition: opacity .3s;
+  opacity: 0;
+}
+
 @media (any-hover:hover) {
-  .media-home .media-mainStage .media-moduleItem:hover .media-moduleImg {
+  .media-home .media-mainStage .media-moduleItem:hover .media-moduleImg,.media-home .media-mainStage .media-moduleItem:hover .media-moduleImgIdle {
     opacity: 1;
   }
   .media-home .media-mainStage .media-moduleItem:hover .media-title {
@@ -260,12 +297,16 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   transform: scale(1);
 }
 
-.media-home .media-mainStage .media-moduleItem.media-active .media-moduleImg {
+.media-home .media-mainStage .media-moduleItem.media-active .media-moduleImg,.media-home .media-mainStage .media-moduleItem.media-active .media-moduleImgIdle {
   opacity: 1;
 }
 
 .media-home .media-mainStage .media-moduleItem.media-active .media-title {
   opacity: 0;
+}
+
+.media-home .media-mainStage .media-moduleItem.media-active .media-logo {
+  opacity: 1;
 }
 
 .media-home .media-moduleTitle {
@@ -420,6 +461,11 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   line-height: 1;
 }
 
+.media-home .media-detailBtn.media-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .media-home .media-detailBtn.media-visible {
   opacity: 1;
   visibility: visible;
@@ -478,5 +524,40 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
     left: 2.875rem;
     top: 100%;
     bottom: auto;
+  }
+}
+
+.media-home .media-bgText {
+  position: absolute;
+  left: 18rem;
+  top: 14rem;
+  font-family: Novecentosanswide-Bold;
+  font-size: 18rem;
+  color: #272727;
+  line-height: 1;
+  opacity: .5;
+}
+
+@media (orientation:portrait) {
+  .media-home .media-bgText {
+    left: 2rem;
+    top: 32.383808096%;
+    font-size: 9rem;
+  }
+}
+
+.media-home .media-bottomLine {
+  pointer-events: none;
+  position: absolute;
+  bottom: 11.25rem;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: hsla(0,0%,100%,.3);
+}
+
+@media (orientation:portrait) {
+  .media-home .media-bottomLine {
+    bottom: 12rem;
   }
 }

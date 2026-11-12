@@ -39,10 +39,11 @@ test('image collection stays compact and within display-sized bounds', () => {
     if (file.endsWith('.svg')) continue;
     assert.equal(path.extname(file), '.webp', `Expected optimized image: ${file}`);
     const [width, height] = dimensions(file);
-    assert.ok(Math.max(width, height) <= 1600, `Oversized image: ${file}`);
-    assert.ok(fs.statSync(file).size < 500_000, `Image over 500 KB: ${file}`);
+    // 保留原站高清立绘与全屏图集，缩略图仍独立限制为 480px。
+    assert.ok(Math.max(width, height) <= 2048, `Oversized image: ${file}`);
+    assert.ok(fs.statSync(file).size < 800_000, `Image over 800 KB: ${file}`);
   }
-  assert.ok(total < 10_000_000, `Image collection exceeds 10 MB: ${total}`);
+  assert.ok(total < 25_000_000, `Image collection exceeds 25 MB: ${total}`);
 });
 
 test('gallery thumbnails are separate small images with accurate metadata', () => {

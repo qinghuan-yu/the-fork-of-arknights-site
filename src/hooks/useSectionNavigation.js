@@ -19,9 +19,9 @@ export function useSectionNavigation(locked) {
     return () => window.removeEventListener('hashchange', sync);
   }, []);
   useEffect(() => {
-    const blocked = target => locked || !!document.querySelector('dialog[open]') || target.closest('[data-scrollable], input, select, textarea');
+    const blocked = target => locked || !!document.querySelector('dialog[open], [role="dialog"][aria-modal="true"]') || target.closest('[data-scrollable], input, select, textarea');
     const step = direction => {
-      if (performance.now() - lastTransition.current < 850) return;
+      if (performance.now() - lastTransition.current < (matchMedia('(orientation: portrait)').matches ? 600 : 1000)) return;
       lastTransition.current = performance.now();
       navigate(index + direction);
     };

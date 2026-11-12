@@ -1,4 +1,4 @@
-/* world 分区样式，类名已恢复为可维护的语义名称。 */
+/* world：依据原站布局与完整状态样式恢复。 */
 .world-container {
   position: absolute;
   top: 0;
@@ -332,8 +332,60 @@ body[data-mix-blend-mode="1"] .world-container .world-bgMask {
   background-color: #18d1ff;
 }
 
+.world-container .world-closeBtn {
+  cursor: pointer;
+  position: absolute;
+  z-index: 4;
+  width: 17.25rem;
+  height: 3.75rem;
+  background-color: #585858;
+  right: 0;
+  bottom: 11.25rem;
+  transform: translateY(50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 4.5rem;
+  padding-right: 3rem;
+}
+
+@media (orientation:portrait) {
+  .world-container .world-closeBtn {
+    display: none;
+  }
+}
+
+.world-container .world-closeBtn .world-icon {
+  width: 1rem;
+}
+
+.world-container .world-closeBtn .world-btnText {
+  min-width: 5rem;
+}
+
+.world-container .world-closeBtn .world-btnText .world-main {
+  font-family: SourceHanSans-Bold;
+  font-size: 1.25rem;
+}
+
+.world-container .world-closeBtn .world-btnText .world-sub {
+  font-family: Bender-Bold;
+  font-size: .875rem;
+}
+
+@media (any-hover:hover) {
+  .world-container .world-closeBtn:hover {
+    background-color: #fff;
+    color: #000;
+  }
+}
+
 .world-container .world-storyList,.world-container .world-detailContainer,.world-container .world-nav {
   transition: opacity .6s,visibility .6s;
+}
+
+.world-container .world-closeBtn {
+  transition: color .3s,background-color .3s,transform .6s,opacity .6s,visibility .6s;
 }
 
 .world-container.world-detailInvisible .world-storyList {
@@ -350,6 +402,12 @@ body[data-mix-blend-mode="1"] .world-container .world-bgMask {
   width: 0;
 }
 
+.world-container.world-detailInvisible .world-closeBtn {
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(100%,50%);
+}
+
 .world-container.world-detailVisible .world-storyList {
   opacity: 0;
   visibility: hidden;
@@ -363,6 +421,12 @@ body[data-mix-blend-mode="1"] .world-container .world-bgMask {
 .world-container.world-detailVisible .world-detailContainer .world-detailContent:before,.world-container.world-detailVisible .world-nav .world-detailContent:before {
   transition-delay: .6s;
   width: 100%;
+}
+
+.world-container.world-detailVisible .world-closeBtn {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(50%);
 }
 
 .world-container .world-floatingText {

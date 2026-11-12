@@ -28,6 +28,7 @@ export function Header({ index, menuOpen, setMenuOpen }) {
   };
   const links = () => sections.map((section, position) => <a key={section.id} href={`#${section.id}`}
     aria-current={index === position ? 'page' : undefined} onClick={() => setMenuOpen(false)}
+    style={{ '--menu-delay': `${position * 70}ms` }}
     className={`navigation-item ${index === position ? 'navigation-active' : ''}`}>
     <span className="navigation-subtitle">{section.english}</span><span className="navigation-title">{section.title}</span>
   </a>);
@@ -47,6 +48,6 @@ export function Header({ index, menuOpen, setMenuOpen }) {
         <div className={`navigation-menuNav ${menuOpen ? 'navigation-active' : ''}`}>{links()}</div>
       </nav></div>
     </div>
-    <audio ref={audio} src="/assets/audio/bgm.ea4286.mp3" loop preload="none" />
+    <audio ref={audio} data-background-music src="/assets/audio/bgm.ea4286.mp3" loop preload="none" />
   </>;
 }

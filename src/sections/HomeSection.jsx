@@ -12,7 +12,7 @@ export default function HomeSection({ active }) {
     <div className="home-bg" /><video ref={video} className="home-background-video" muted loop playsInline />
     <div className="home-maskBlock" /><div className="home-maskBlock2" /><div className="home-bottomShadow" />
     <div className="home-infos"><div className="home-main"><div className="home-primaryText">ARKNIGHTS</div>
-      <div className="home-subBox"><div className="home-secondaryText">RHODES ISLAND</div><div className="home-linkText">ARKNIGHTS / LOCAL ARCHIVE</div></div>
+      <div className="home-subBox"><div className="home-secondaryText">RHODES ISLAND</div><div className="home-linkText">HTTPS://AK.HYPERGRYPH.COM/</div></div>
     </div><div className="home-copyright"><Icon name="copyright_mini" /></div></div>
   </div>;
 }

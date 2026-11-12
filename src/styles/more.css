@@ -1,4 +1,4 @@
-/* more 分区样式，类名已恢复为可维护的语义名称。 */
+/* more：依据原站布局与完整状态样式恢复。 */
 .more-container,.more-container .more-list {
   position: absolute;
   top: 0;
@@ -19,6 +19,11 @@
     padding-right: 5.75rem;
     height: 74.5127436282%;
   }
+}
+
+.more-container .more-list.more-hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .more-container .more-list .more-_list {
@@ -191,6 +196,10 @@
   }
 }
 
+html[lang=zh-tw] .more-container .more-list .more-listItem.more-terra_historicus .more-info .more-title {
+  font-size: 3rem;
+}
+
 .more-container .more-list .more-floatingText {
   pointer-events: none;
   position: absolute;
@@ -234,5 +243,15 @@
     top: 100%;
     right: 5.75rem;
     bottom: auto;
+  }
+}
+
+.more-modalVideo {
+  width: 75%;
+}
+
+@media (orientation:portrait) {
+  .more-modalVideo {
+    width: 90%;
   }
 }
