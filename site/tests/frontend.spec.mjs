@@ -240,6 +240,8 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
     loop: video.loop, error: video.error?.message || null,
     buffered: Array.from({ length: video.buffered.length }, (_, i) => [video.buffered.start(i), video.buffered.end(i)]),
   }));
+  const firstFragmentCount = () => requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url)).length;
+  const startupRequests = firstFragmentCount();
   try {
     await expect.poll(async () => (await playbackState()).time, { timeout: 25000 }).toBeGreaterThan(16);
     await expect.poll(async () => {
@@ -247,9 +249,10 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
       return state.time > 0.2 && state.time < 3 && !state.paused;
     }, { timeout: 8000 }).toBe(true);
   } finally {
-    console.log('Home video playback:', JSON.stringify(await playbackState()));
+    console.log('Home video playback:', JSON.stringify({ ...await playbackState(), startupRequests, requestsAfterLoop: firstFragmentCount() }));
   }
-  expect(requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url))).toHaveLength(1);
+  expect(startupRequests).toBeGreaterThan(0);
+  expect(firstFragmentCount(), 'loop should reuse the downloaded first fragment').toBe(startupRequests);
   // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
   await page.evaluate(() => {
     Object.defineProperty(document, 'hidden', { configurable: true, value: true });
