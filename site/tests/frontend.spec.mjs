@@ -233,13 +233,22 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
   expect(requests.some(url => /PV04_(?:landscape|portrait)\.m3u8/.test(url))).toBe(true);
   const video = await page.locator('.home-background-video').evaluate(video => ({ width: video.videoWidth, height: video.videoHeight }));
   expect(video.width > 0 && video.height > 0).toBe(true);
-  // Seek through the loop boundary so the shortened/backward buffer is exercised.
-  await page.locator('.home-background-video').evaluate(video => { video.currentTime = video.duration - 0.2; });
-  await expect.poll(() => page.locator('.home-background-video').evaluate(video => ({
-    looped: video.currentTime > 0.2 && video.currentTime < 3 && !video.paused,
+  // The background has no seek controls. Verify the full natural loop, including
+  // every middle fragment, rather than jumping into an unbuffered final frame.
+  const playbackState = () => page.locator('.home-background-video').evaluate(video => ({
     time: video.currentTime, duration: video.duration, paused: video.paused, readyState: video.readyState,
+    loop: video.loop, error: video.error?.message || null,
     buffered: Array.from({ length: video.buffered.length }, (_, i) => [video.buffered.start(i), video.buffered.end(i)]),
-  })), { timeout: 15000 }).toMatchObject({ looped: true });
+  }));
+  try {
+    await expect.poll(async () => (await playbackState()).time, { timeout: 25000 }).toBeGreaterThan(16);
+    await expect.poll(async () => {
+      const state = await playbackState();
+      return state.time > 0.2 && state.time < 3 && !state.paused;
+    }, { timeout: 8000 }).toBe(true);
+  } finally {
+    console.log('Home video playback:', JSON.stringify(await playbackState()));
+  }
   expect(requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url))).toHaveLength(1);
   // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
   await page.evaluate(() => {
@@ -251,7 +260,11 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
     delete document.hidden;
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  await expect.poll(() => page.locator('.home-background-video').evaluate(video => !video.paused)).toBe(true);
+  const resumedAt = (await playbackState()).time;
+  await expect.poll(async () => {
+    const state = await playbackState();
+    return !state.paused && state.time > resumedAt + 0.1;
+  }).toBe(true);
 });
 
 test('直接进入分区不会下载首页视频并保留已访问状态', async ({ page }) => {
