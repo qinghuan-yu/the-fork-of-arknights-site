@@ -2,11 +2,11 @@
   {
     "code": "B003",
     "camp": "RHODES ISLAND",
-    "avatar": "/assets/images/kaltsit.05c0f5e1.png",
+    "avatar": "/assets/images/kaltsit.05c0f5e1.webp",
     "illustList": [
       {
         "phase": 1,
-        "illust": "/assets/images/kaltsit_e1.a53cfc2e.png",
+        "illust": "/assets/images/kaltsit_e1.a53cfc2e.webp",
         "focus": {
           "ox": 0.5078125,
           "oy": 0.2734375,
@@ -14,11 +14,11 @@
           "ty": -0.05859375,
           "scale": 1.3
         },
-        "illustStyled": "/assets/images/kaltsit_e2_styled.94b12054.png"
+        "illustStyled": "/assets/images/kaltsit_e2_styled.94b12054.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/kaltsit_e2.a0c208dc.png",
+        "illust": "/assets/images/kaltsit_e2.a0c208dc.webp",
         "focus": {
           "ox": 0.52734375,
           "oy": 0.66015625,
@@ -47,11 +47,11 @@
   {
     "code": "R001",
     "camp": "RHODES ISLAND",
-    "avatar": "/assets/images/amiya.a410de75.png",
+    "avatar": "/assets/images/amiya.a410de75.webp",
     "illustList": [
       {
         "phase": 0,
-        "illust": "/assets/images/amiya_e0.2c74e355.png",
+        "illust": "/assets/images/amiya_e0.2c74e355.webp",
         "focus": {
           "ox": 0.51953125,
           "oy": 0.337890625,
@@ -59,11 +59,11 @@
           "ty": -0.1171875,
           "scale": 1.3
         },
-        "illustStyled": "/assets/images/amiya_e1_styled.db35f491.png"
+        "illustStyled": "/assets/images/amiya_e1_styled.db35f491.webp"
       },
       {
         "phase": 1,
-        "illust": "/assets/images/amiya_e1.739a31c1.png",
+        "illust": "/assets/images/amiya_e1.739a31c1.webp",
         "focus": {
           "ox": 0.4921875,
           "oy": 0.421875,
@@ -71,11 +71,11 @@
           "ty": -0.203125,
           "scale": 1.3
         },
-        "illustStyled": "/assets/images/amiya_e2_styled.8b458840.png"
+        "illustStyled": "/assets/images/amiya_e2_styled.8b458840.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/amiya_e2.6bc004b9.png",
+        "illust": "/assets/images/amiya_e2.6bc004b9.webp",
         "focus": {
           "ox": 0.5078125,
           "oy": 0.498046875,
@@ -104,11 +104,11 @@
   {
     "code": "LM04",
     "camp": "LUNGMEN",
-    "avatar": "/assets/images/chen.4d5cd8a0.png",
+    "avatar": "/assets/images/chen.4d5cd8a0.webp",
     "illustList": [
       {
         "phase": 1,
-        "illust": "/assets/images/chen_e1.54258041.png",
+        "illust": "/assets/images/chen_e1.54258041.webp",
         "focus": {
           "ox": 0.6875,
           "oy": 0.154296875,
@@ -116,11 +116,11 @@
           "ty": -0.10546875,
           "scale": 1.3
         },
-        "illustStyled": "/assets/images/chen_e2_styled.3825ba6a.png"
+        "illustStyled": "/assets/images/chen_e2_styled.3825ba6a.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/chen_e2.7c62a20a.png",
+        "illust": "/assets/images/chen_e2.7c62a20a.webp",
         "focus": {
           "ox": 0.5078125,
           "oy": 0.498046875,
@@ -149,11 +149,11 @@
   {
     "code": "PL02",
     "camp": "PENGUIN LOGISTICS",
-    "avatar": "/assets/images/texas.5a198d4c.png",
+    "avatar": "/assets/images/texas.5a198d4c.webp",
     "illustList": [
       {
         "phase": 1,
-        "illust": "/assets/images/texas_e1.3801fc0d.png",
+        "illust": "/assets/images/texas_e1.3801fc0d.webp",
         "focus": {
           "ox": 0.849609375,
           "oy": 0.1025390625,
@@ -161,11 +161,11 @@
           "ty": -0.10546875,
           "scale": 1.2
         },
-        "illustStyled": "/assets/images/texas_e2_styled.9c04f6eb.png"
+        "illustStyled": "/assets/images/texas_e2_styled.9c04f6eb.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/texas_e2.5d953b92.png",
+        "illust": "/assets/images/texas_e2.5d953b92.webp",
         "focus": {
           "ox": 0.5078125,
           "oy": 0.1953125,
@@ -194,11 +194,11 @@
   {
     "code": "PL03",
     "camp": "PENGUIN LOGISTICS",
-    "avatar": "/assets/images/exusiai.ff3d47d4.png",
+    "avatar": "/assets/images/exusiai.ff3d47d4.webp",
     "illustList": [
       {
         "phase": 1,
-        "illust": "/assets/images/exusiai_e1.4b3f0e95.png",
+        "illust": "/assets/images/exusiai_e1.4b3f0e95.webp",
         "focus": {
           "ox": 0.78515625,
           "oy": 0.1220703125,
@@ -206,11 +206,11 @@
           "ty": -0.10546875,
           "scale": 1.2
         },
-        "illustStyled": "/assets/images/exusiai_e2_styled.9163271b.png"
+        "illustStyled": "/assets/images/exusiai_e2_styled.9163271b.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/exusiai_e2.f34f1db4.png",
+        "illust": "/assets/images/exusiai_e2.f34f1db4.webp",
         "focus": {
           "ox": 0.5078125,
           "oy": 0.15625,
@@ -239,11 +239,11 @@
   {
     "code": "RL04",
     "camp": "RHINE LAB",
-    "avatar": "/assets/images/ptilopsis.0483cb6d.png",
+    "avatar": "/assets/images/ptilopsis.0483cb6d.webp",
     "illustList": [
       {
         "phase": 1,
-        "illust": "/assets/images/ptilopsis_e1.5a241fd0.png",
+        "illust": "/assets/images/ptilopsis_e1.5a241fd0.webp",
         "focus": {
           "ox": 0.53125,
           "oy": 0.1201171875,
@@ -251,11 +251,11 @@
           "ty": -0.10546875,
           "scale": 1.2
         },
-        "illustStyled": "/assets/images/ptilopsis_e2_styled.8d260dbb.png"
+        "illustStyled": "/assets/images/ptilopsis_e2_styled.8d260dbb.webp"
       },
       {
         "phase": 2,
-        "illust": "/assets/images/ptilopsis_e2.b08f1ca9.png",
+        "illust": "/assets/images/ptilopsis_e2.b08f1ca9.webp",
         "focus": {
           "ox": 0.41015625,
           "oy": 0.205078125,

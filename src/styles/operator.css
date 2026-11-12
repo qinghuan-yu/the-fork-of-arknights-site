@@ -6,14 +6,14 @@
   width: 100%;
   height: 100%;
   background-color: #272727;
-  background-image: url("/assets/images/bg2.e562d9ae.png");
+  background-image: url("/assets/images/bg2.e562d9ae.webp");
   background-size: cover;
   background-position: 50%;
 }
 
 @media (orientation:portrait) {
   .operator-container {
-    background-image: url("/assets/images/bg2_m.aa95d813.png");
+    background-image: url("/assets/images/bg2_m.aa95d813.webp");
   }
 }
 
@@ -43,7 +43,7 @@
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-image: url("/assets/images/common_mask.55fff2e9.webp");
   background-size: 100% 100%;
 }
 

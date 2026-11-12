@@ -16,7 +16,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("/assets/images/bg.8954cef1.jpg");
+  background-image: url("/assets/images/bg.8954cef1.webp");
   background-size: cover;
   background-position: 50%;
   transition: opacity 1s;
@@ -24,7 +24,7 @@
 
 @media (orientation:portrait) {
   .home-container .home-bg {
-    background-image: url("/assets/images/bg_m.784bbb87.jpg");
+    background-image: url("/assets/images/bg_m.784bbb87.webp");
   }
 }
 
@@ -35,7 +35,7 @@
   opacity: .78;
   width: 52.5rem;
   height: 60.75rem;
-  background-image: url("/assets/images/mask_block.33e7b5a1.png");
+  background-image: url("/assets/images/mask_block.33e7b5a1.webp");
   background-repeat: no-repeat;
   background-position: 100% 0;
   background-size: auto 110%;
@@ -45,7 +45,7 @@
   .home-container .home-maskBlock {
     width: 18.75rem;
     height: 12rem;
-    background-image: url("/assets/images/mask_block_m.f8c50bfb.png");
+    background-image: url("/assets/images/mask_block_m.f8c50bfb.webp");
     background-size: auto 100%;
   }
 }
@@ -58,7 +58,7 @@
   opacity: .25;
   width: 52.5rem;
   height: 60.75rem;
-  background-image: url("/assets/images/mask_block.33e7b5a1.png");
+  background-image: url("/assets/images/mask_block.33e7b5a1.webp");
   background-repeat: no-repeat;
   background-position: 0 0;
   background-size: auto 110%;
@@ -69,7 +69,7 @@
     width: 5.75rem;
     height: 12rem;
     transform: translateX(-3.75rem);
-    background-image: url("/assets/images/mask_block_m.f8c50bfb.png");
+    background-image: url("/assets/images/mask_block_m.f8c50bfb.webp");
     background-size: auto 100%;
   }
 }

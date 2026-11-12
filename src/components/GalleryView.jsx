@@ -37,7 +37,7 @@ export function GalleryView({ onReturn }) {
       <div className="gallery-floatingText">GALLERY</div>
       <div className="gallery-infoAndList"><div className="gallery-info"><h2 className="gallery-title">{item?.content.title}</h2><p className="gallery-desc">{item?.content.desc}</p></div>
         <div className="gallery-list"><Swiper className="gallery-swiper" slidesPerView={portrait ? 2 : 4} modules={[FreeMode]} freeMode grabCursor>
-          {list.map((entry, i) => <SwiperSlide key={entry.cid}><button type="button" className={`gallery-item ${index === i ? 'gallery-active' : ''}`} aria-label={entry.content.title} aria-pressed={index === i} onClick={() => setIndex(i)}><img className="gallery-img" src={entry.content.thumbnail?.url || entry.content.resource.url} alt={entry.content.title} /></button></SwiperSlide>)}
+          {list.map((entry, i) => <SwiperSlide key={entry.cid}><button type="button" className={`gallery-item ${index === i ? 'gallery-active' : ''}`} aria-label={entry.content.title} aria-pressed={index === i} onClick={() => setIndex(i)}><img className="gallery-img" loading="lazy" decoding="async" src={entry.content.thumbnail?.url || entry.content.resource.url} alt={entry.content.title} /></button></SwiperSlide>)}
         </Swiper></div>
       </div>
     </div><BackButton className="gallery-back" onClick={onReturn} />

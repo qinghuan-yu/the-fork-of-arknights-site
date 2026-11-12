@@ -6,7 +6,7 @@ import { fileURLToPath } from 'node:url';
 import { gzipSync } from 'node:zlib';
 
 const site = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const built = path.join(site, 'dist/client');
+const built = path.join(site, 'dist');
 const html = fs.readFileSync(path.join(built, 'index.html'), 'utf8');
 
 test('initial JavaScript stays below 230 KB and deferred sections are not preloaded', () => {
@@ -40,3 +40,12 @@ for (const direction of ['landscape', 'portrait']) {
     }
   });
 }
+
+test('font directory contains only referenced WOFF2 files', () => {
+  const styles = fs.readFileSync(path.join(site, 'src/styles/fonts.css'), 'utf8');
+  const references = [...styles.matchAll(/url\("\/assets\/fonts\/([^"/]+)"\)/g)].map(match => match[1]).sort();
+  const files = fs.readdirSync(path.join(site, 'public/assets/fonts')).sort();
+  assert.ok(files.length > 0);
+  assert.deepEqual(files, references);
+  assert.ok(files.every(file => file.endsWith('.woff2')));
+});

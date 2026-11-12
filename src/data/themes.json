@@ -5,10 +5,10 @@
       "name": "傀影与猩红孤钻",
       "content": {
         "cover": {
-          "url": "/assets/images/11089188b640e44fe3130f43e74426a3.png",
-          "size": 3575881,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/11089188b640e44fe3130f43e74426a3.webp",
+          "size": 45040,
+          "width": 960,
+          "height": 540
         },
         "title": "傀影与猩红孤钻",
         "buttons": [
@@ -28,8 +28,8 @@
         ],
         "subtitle": "PHANTOM &\nCRIMSON SOLITAIRE",
         "coverPortrait": {
-          "url": "/assets/images/e4c812a6190b72a803f4a64654f07e85.png",
-          "size": 402431,
+          "url": "/assets/images/e4c812a6190b72a803f4a64654f07e85.webp",
+          "size": 31002,
           "width": 387,
           "height": 589
         }
@@ -42,10 +42,10 @@
       "name": "水月与深蓝之树",
       "content": {
         "cover": {
-          "url": "/assets/images/547328bddcbbd9dcff4a48e45bcbfe15.png",
-          "size": 3638550,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/547328bddcbbd9dcff4a48e45bcbfe15.webp",
+          "size": 73406,
+          "width": 960,
+          "height": 540
         },
         "title": "水月与深蓝之树",
         "buttons": [
@@ -65,10 +65,10 @@
         ],
         "subtitle": "MIZUKI &\nCAERULA ARBOR",
         "coverPortrait": {
-          "url": "/assets/images/aded56cd73f742c454546c3d27bede09.png",
-          "size": 1726034,
-          "width": 750,
-          "height": 1141
+          "url": "/assets/images/aded56cd73f742c454546c3d27bede09.webp",
+          "size": 108996,
+          "width": 631,
+          "height": 960
         }
       },
       "sticky": false,
@@ -79,10 +79,10 @@
       "name": "探索者的银凇止境",
       "content": {
         "cover": {
-          "url": "/assets/images/eaecd9a28b3952184ce79318026bca7f.png",
-          "size": 3786756,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/eaecd9a28b3952184ce79318026bca7f.webp",
+          "size": 67120,
+          "width": 960,
+          "height": 540
         },
         "title": "探索者的银凇止境",
         "buttons": [
@@ -115,8 +115,8 @@
         ],
         "subtitle": "EXPEDITIONER'S\nJQKLUMARKAR",
         "coverPortrait": {
-          "url": "/assets/images/046b2f49a6f4ff9effe8724bddefa4a9.png",
-          "size": 813096,
+          "url": "/assets/images/046b2f49a6f4ff9effe8724bddefa4a9.webp",
+          "size": 64804,
           "width": 562,
           "height": 855
         }
@@ -129,10 +129,10 @@
       "name": "萨卡兹的无终奇语",
       "content": {
         "cover": {
-          "url": "/assets/images/17770e12e3a1c477616bbaaccdcb83e0.jpg",
-          "size": 546547,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/17770e12e3a1c477616bbaaccdcb83e0.webp",
+          "size": 59028,
+          "width": 960,
+          "height": 540
         },
         "title": "萨卡兹的无终奇语",
         "buttons": [
@@ -165,10 +165,10 @@
         ],
         "subtitle": "SARKAZ'S FURNACE\nSIDE FABLES",
         "coverPortrait": {
-          "url": "/assets/images/9132218c1b0b773eeeccde94a661a321.jpg",
-          "size": 289016,
-          "width": 750,
-          "height": 1141
+          "url": "/assets/images/9132218c1b0b773eeeccde94a661a321.webp",
+          "size": 64978,
+          "width": 631,
+          "height": 960
         }
       },
       "sticky": false,
@@ -179,10 +179,10 @@
       "name": "岁的界园志异",
       "content": {
         "cover": {
-          "url": "/assets/images/f29c7ff1f712177e300b6f9fb4948fa2.png",
-          "size": 4142832,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/f29c7ff1f712177e300b6f9fb4948fa2.webp",
+          "size": 98470,
+          "width": 960,
+          "height": 540
         },
         "title": "岁的界园志异",
         "buttons": [
@@ -215,10 +215,10 @@
         ],
         "subtitle": "Sui's Garden\nof Grotesqueries",
         "coverPortrait": {
-          "url": "/assets/images/82006c9af765eee6c09ccf51a63d3452.png",
-          "size": 1596985,
-          "width": 750,
-          "height": 1411
+          "url": "/assets/images/82006c9af765eee6c09ccf51a63d3452.webp",
+          "size": 65844,
+          "width": 510,
+          "height": 960
         }
       },
       "sticky": false,
@@ -229,10 +229,10 @@
       "name": "沉沦者的黑流树海",
       "content": {
         "cover": {
-          "url": "/assets/images/8ed71a3d0fed6ca51a7df1b94544f84d.png",
-          "size": 2700015,
-          "width": 1921,
-          "height": 1080
+          "url": "/assets/images/8ed71a3d0fed6ca51a7df1b94544f84d.webp",
+          "size": 36666,
+          "width": 960,
+          "height": 540
         },
         "title": "沉沦者的黑流树海",
         "buttons": [
@@ -265,10 +265,10 @@
         ],
         "subtitle": "The Black Flow\nof the Drowning Seekers",
         "coverPortrait": {
-          "url": "/assets/images/0501efeedbcdbaf238de5f0ff2815ff3.png",
-          "size": 637476,
-          "width": 480,
-          "height": 1080
+          "url": "/assets/images/integrated_strategies.e6e35f3c.webp",
+          "size": 24220,
+          "width": 427,
+          "height": 960
         }
       },
       "sticky": false,
@@ -281,10 +281,10 @@
       "name": "沙洲遗闻",
       "content": {
         "cover": {
-          "url": "/assets/images/4c3418f41a8c16fa968d63dc25436e48.png",
-          "size": 2422069,
-          "width": 1920,
-          "height": 1080
+          "url": "/assets/images/4c3418f41a8c16fa968d63dc25436e48.webp",
+          "size": 36934,
+          "width": 960,
+          "height": 540
         },
         "title": "沙洲遗闻",
         "buttons": [
@@ -317,8 +317,8 @@
         ],
         "subtitle": "TALES WITHIN\nTHE SAND",
         "coverPortrait": {
-          "url": "/assets/images/b70141835461f78f66bf2c1a61bccaf8.png",
-          "size": 1098032,
+          "url": "/assets/images/b70141835461f78f66bf2c1a61bccaf8.webp",
+          "size": 54272,
           "width": 750,
           "height": 891
         }
@@ -331,10 +331,10 @@
       "name": "重启锚点",
       "content": {
         "cover": {
-          "url": "/assets/images/36fe1ec6231efe455b62ac3e2f813169.png",
-          "size": 20312153,
-          "width": 6400,
-          "height": 3600
+          "url": "/assets/images/36fe1ec6231efe455b62ac3e2f813169.webp",
+          "size": 67744,
+          "width": 960,
+          "height": 540
         },
         "title": "重启锚点",
         "buttons": [
@@ -367,10 +367,10 @@
         ],
         "subtitle": " Relaunch Anchor",
         "coverPortrait": {
-          "url": "/assets/images/752c72784fdb48d2c14851495b6e0587.png",
-          "size": 697825,
-          "width": 481,
-          "height": 1080
+          "url": "/assets/images/reclamation_algorithm.91dd81b0.webp",
+          "size": 41884,
+          "width": 428,
+          "height": 960
         }
       },
       "sticky": false,

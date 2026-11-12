@@ -144,7 +144,7 @@ test('导航菜单、背景音乐与历史记录', async ({ page }, info) => {
 });
 
 test('生产入口没有旧编译包或 SDK 引导', () => {
-  const html = fs.readFileSync(new URL('../dist/client/index.html', import.meta.url), 'utf8');
+  const html = fs.readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8');
   expect(html).not.toMatch(/_next|__next_f|HG_SDK|local-runtime|vendor/);
   expect(fs.existsSync(new URL('../public/vendor', import.meta.url))).toBe(false);
 });

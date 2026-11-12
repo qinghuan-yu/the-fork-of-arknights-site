@@ -83,7 +83,7 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-image: url("/assets/images/common_mask.55fff2e9.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -96,7 +96,7 @@ body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
 @media (orientation:portrait) {
   body[data-mix-blend-mode="1"] .topic-container .topic-bgMask {
     mix-blend-mode: multiply;
-    background-image: url("/assets/images/mask.2a894589.png");
+    background-image: url("/assets/images/mask.2a894589.webp");
     background-size: 100% auto;
     background-position: bottom;
   }

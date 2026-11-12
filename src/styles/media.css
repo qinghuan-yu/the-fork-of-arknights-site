@@ -23,7 +23,7 @@
   height: 100%;
   z-index: 2;
   pointer-events: none;
-  background-image: url("/assets/images/common_mask.55fff2e9.png");
+  background-image: url("/assets/images/common_mask.55fff2e9.webp");
   background-size: 100% 100%;
 }
 
@@ -96,14 +96,14 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   justify-content: center;
   background-repeat: no-repeat;
   background-position: 6.0416666667% 74.0740740741%,95.9375% 7.4074074074%;
-  background-image: url("/assets/images/dots_wide.e2ef693e.png"),url("/assets/images/dots.3f5abd21.png");
+  background-image: url("/assets/images/dots_wide.e2ef693e.webp"),url("/assets/images/dots.3f5abd21.webp");
   background-size: 29.75rem auto,18.4375rem auto;
 }
 
 @media (orientation:portrait) {
   .media-home .media-_home {
     padding-bottom: 6rem;
-    background-image: url("/assets/images/dots_wide.e2ef693e.png");
+    background-image: url("/assets/images/dots_wide.e2ef693e.webp");
     background-position: 2.25rem 93%;
     background-size: 26.875rem auto;
   }
@@ -117,7 +117,7 @@ body[data-mix-blend-mode="1"] .media-container .media-bgMask {
   transform: translateX(-50%) translateY(-50%);
   width: 64.1875rem;
   height: 50.875rem;
-  background-image: url("/assets/images/about_terra.44839d14.png");
+  background-image: url("/assets/images/about_terra.44839d14.webp");
   background-size: 100% 100%;
   background-position: 50%;
   background-repeat: no-repeat;

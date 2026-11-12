@@ -1,14 +1,14 @@
 [
   {
     "key": "GALLERY",
-    "activeImage": "/assets/images/gallery_active.d45cfc72.png",
+    "activeImage": "/assets/images/gallery_active.d45cfc72.webp",
     "activeImageStyles": {
       "width": 282,
       "height": 425,
       "left": 185,
       "top": 5
     },
-    "logo": "/assets/images/logo_gallery.08a04a01.png",
+    "logo": "/assets/images/logo_gallery.08a04a01.webp",
     "logoStyles": {
       "width": 0,
       "left": 250,
@@ -40,14 +40,14 @@
   },
   {
     "key": "VIDEO",
-    "activeImage": "/assets/images/video_active.693c91f3.png",
+    "activeImage": "/assets/images/video_active.693c91f3.webp",
     "activeImageStyles": {
       "width": 488,
       "height": 318,
       "left": 556,
       "top": 510
     },
-    "logo": "/assets/images/logo_video.c1de0303.png",
+    "logo": "/assets/images/logo_video.c1de0303.webp",
     "logoStyles": {
       "width": 66,
       "left": 332,
