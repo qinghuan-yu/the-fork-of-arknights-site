@@ -49,7 +49,7 @@ PARTICLE_BENCHMARK=1 node --test site/tests/particle-math.test.mjs
 ```
 
 - `test:sites` 包含 4 项托管、5 项粒子正确性、4 项构建/视频预算检查；可选数学基准默认跳过，不以机器速度作为通过条件。
-- UI 覆盖原 22 项及新增首屏按需挂载、背景视频实际播放、深链接不加载首页视频、状态保留、慢分区加载中快速离开等检查，桌面/手机共 28 项。
+- UI 覆盖原 22 项及新增首屏按需挂载、背景视频实际播放、深链接不加载首页视频、状态保留、慢分区加载中快速离开等检查，桌面/手机共 30 项，包含原生 HLS 与强制 hls.js 轻量回退两条播放路径。
 - 发布流程先构建再运行所有上述默认检查；UI 未通过不会发布。最终部署验收结果见 `design-qa.md`。
 - 可选维护脚本 `node site/scripts/segment-background-videos.mjs --output-dir /tmp/remux-check` 从固定 Git 基线提取原视频，调用 ffmpeg/ffprobe 无损分片，并在完整帧校验后输出。普通安装、构建和部署不需要 ffmpeg；脚本也支持 `--source-dir` 和 `--git-ref`。
 

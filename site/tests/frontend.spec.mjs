@@ -233,41 +233,7 @@ test('首页只挂载当前分区且短分片视频可播放', async ({ page }) 
   expect(requests.some(url => /PV04_(?:landscape|portrait)\.m3u8/.test(url))).toBe(true);
   const video = await page.locator('.home-background-video').evaluate(video => ({ width: video.videoWidth, height: video.videoHeight }));
   expect(video.width > 0 && video.height > 0).toBe(true);
-  // The background has no seek controls. Verify the full natural loop, including
-  // every middle fragment, rather than jumping into an unbuffered final frame.
-  const playbackState = () => page.locator('.home-background-video').evaluate(video => ({
-    time: video.currentTime, duration: video.duration, paused: video.paused, readyState: video.readyState,
-    loop: video.loop, error: video.error?.message || null,
-    buffered: Array.from({ length: video.buffered.length }, (_, i) => [video.buffered.start(i), video.buffered.end(i)]),
-  }));
-  const firstFragmentCount = () => requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url)).length;
-  const startupRequests = firstFragmentCount();
-  try {
-    await expect.poll(async () => (await playbackState()).time, { timeout: 25000 }).toBeGreaterThan(16);
-    await expect.poll(async () => {
-      const state = await playbackState();
-      return state.time > 0.2 && state.time < 3 && !state.paused;
-    }, { timeout: 8000 }).toBe(true);
-  } finally {
-    console.log('Home video playback:', JSON.stringify({ ...await playbackState(), startupRequests, requestsAfterLoop: firstFragmentCount() }));
-  }
-  expect(startupRequests).toBeGreaterThan(0);
-  expect(firstFragmentCount(), 'loop should reuse the downloaded first fragment').toBe(startupRequests);
-  // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
-  await page.evaluate(() => {
-    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
-    document.dispatchEvent(new Event('visibilitychange'));
-  });
-  expect(await page.locator('.home-background-video').evaluate(video => video.paused)).toBe(true);
-  await page.evaluate(() => {
-    delete document.hidden;
-    document.dispatchEvent(new Event('visibilitychange'));
-  });
-  const resumedAt = (await playbackState()).time;
-  await expect.poll(async () => {
-    const state = await playbackState();
-    return !state.paused && state.time > resumedAt + 0.1;
-  }).toBe(true);
+  await verifyHomeLoopAndResume(page, requests);
 });
 
 test('直接进入分区不会下载首页视频并保留已访问状态', async ({ page }) => {
@@ -305,4 +271,64 @@ test('快速离开未加载分区不会启动隐藏视频', async ({ page }) => 
   await navigate(page, 'more');
   await expect(page.locator('.more-list')).toBeVisible();
   await expect(page.locator('.section-loading')).toHaveCount(0);
+});
+
+// Native HLS owns its request/cache policy. Only the hls.js branch uses our
+// forward/back-buffer settings; verify that branch separately below.
+async function verifyHomeLoopAndResume(page, requests) {
+  // The background has no seek controls. Verify the full natural loop, including
+  // every middle fragment, rather than jumping into an unbuffered final frame.
+  const playbackState = () => page.locator('.home-background-video').evaluate(video => ({
+    time: video.currentTime, duration: video.duration, paused: video.paused, readyState: video.readyState,
+    loop: video.loop, source: video.currentSrc, nativeHls: video.canPlayType('application/vnd.apple.mpegurl'), error: video.error?.message || null,
+    buffered: Array.from({ length: video.buffered.length }, (_, i) => [video.buffered.start(i), video.buffered.end(i)]),
+  }));
+  const firstFragmentCount = () => requests.filter(url => /PV04_(?:landscape|portrait)-short-000\.ts/.test(url)).length;
+  const startupRequests = firstFragmentCount();
+  try {
+    await expect.poll(async () => (await playbackState()).time, { timeout: 25000 }).toBeGreaterThan(16);
+    await expect.poll(async () => {
+      const state = await playbackState();
+      return state.time > 0.2 && state.time < 3 && !state.paused;
+    }, { timeout: 8000 }).toBe(true);
+  } finally {
+    console.log('Home video playback:', JSON.stringify({ ...await playbackState(), startupRequests, requestsAfterLoop: firstFragmentCount() }));
+  }
+  expect(startupRequests).toBeGreaterThan(0);
+  if ((await playbackState()).source.startsWith('blob:')) {
+    expect(firstFragmentCount(), 'hls.js loop should reuse the downloaded first fragment').toBe(startupRequests);
+  }
+  // Exercise the visibility handler deterministically; this is not a real OS-tab switch.
+  await page.evaluate(() => {
+    Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  expect(await page.locator('.home-background-video').evaluate(video => video.paused)).toBe(true);
+  await page.evaluate(() => {
+    delete document.hidden;
+    document.dispatchEvent(new Event('visibilitychange'));
+  });
+  const resumedAt = (await playbackState()).time;
+  await expect.poll(async () => {
+    const state = await playbackState();
+    return !state.paused && state.time > resumedAt + 0.1;
+  }).toBe(true);
+}
+
+
+test('HLS 轻量回退可完整循环并从隐藏状态恢复', async ({ page }) => {
+  // Exercise hls.js even on Chromium builds that support HLS natively.
+  await page.addInitScript(() => {
+    const original = HTMLMediaElement.prototype.canPlayType;
+    HTMLMediaElement.prototype.canPlayType = function(type) {
+      return /mpegurl/i.test(type) ? '' : original.call(this, type);
+    };
+  });
+  const requests = [];
+  page.on('request', request => requests.push(request.url()));
+  await navigate(page, 'index');
+  await expect.poll(() => page.locator('.home-background-video').evaluate(video => video.currentTime), { timeout: 15000 }).toBeGreaterThan(0.2);
+  await expect(page.locator('.home-background-video')).toHaveAttribute('src', /^blob:/);
+  expect(requests.some(url => /hls\.light-/.test(url))).toBe(true);
+  await verifyHomeLoopAndResume(page, requests);
 });
