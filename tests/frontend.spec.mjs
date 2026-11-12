@@ -68,6 +68,64 @@ test('新闻分类与轮播切换', async ({ page }) => {
   await expect(page.locator('.information-currentBannerInfo .information-title')).not.toHaveText(first, { timeout: 8000 });
 });
 
+// 按实际绘制帧检查：正常切换、退出时返回原项、入场中再次切换都不能闪回全亮。
+for (const section of ['information', 'operator']) {
+  test(`${section} 连续切换无闪回或布局跳动`, async ({ page }) => {
+    await navigate(page, section);
+    if (section === 'information') await page.locator('.information-swiper').evaluate(node => node.swiper.autoplay.stop());
+    const frames = await page.evaluate(async section => {
+      const news = section === 'information';
+      const buttons = [...document.querySelectorAll(news ? '.information-tabItem' : '.operator-charAvatar')];
+      const selector = news ? '.information-newsList' : '.operator-illust';
+      const actions = [{ at: 0, index: 1 }, { at: 900, index: 2 }, { at: 1050, index: 1 }, { at: 1800, index: 0 }, { at: 2230, index: 2 }, { at: 2370, index: 3 }];
+      const frames = [];
+      const start = performance.now();
+      let action = 0;
+      await new Promise(resolve => {
+        const tick = () => {
+          const time = performance.now() - start;
+          while (action < actions.length && time >= actions[action].at) buttons[actions[action++].index].click();
+          const node = document.querySelector(selector);
+          const style = getComputedStyle(node);
+          frames.push({ time, opacity: Number(style.opacity), x: new DOMMatrixReadOnly(style.transform).m41,
+            key: node.querySelector('img')?.alt || node.innerText,
+            buttons: buttons.map(button => { const r = button.getBoundingClientRect(); return [r.x, r.y, r.width, r.height]; }) });
+          if (time < 3500) requestAnimationFrame(tick); else resolve();
+        };
+        requestAnimationFrame(tick);
+      });
+      return frames;
+    }, section);
+    let adjacentFrames = 0;
+    for (let i = 1; i < frames.length; i++) {
+      const previous = frames[i - 1], current = frames[i], elapsed = current.time - previous.time;
+      if (elapsed > 50) continue;
+      adjacentFrames++;
+      expect(Math.abs(current.opacity - previous.opacity), `第 ${i} 帧透明度连续`).toBeLessThan(.06 + elapsed * .012);
+      if (current.key !== previous.key) expect(current.opacity, '内容在不可见时替换').toBeLessThan(.15);
+      if (current.opacity > .15 && previous.opacity > .15) {
+        expect(Math.abs(current.x - previous.x), `第 ${i} 帧位移连续`).toBeLessThan(2 + elapsed * .25);
+      }
+      if (section === 'information') {
+        for (let button = 0; button < current.buttons.length; button++) {
+          for (let axis = 0; axis < 4; axis++) expect(Math.abs(current.buttons[button][axis] - frames[0].buttons[button][axis]), '分类按钮保持原位').toBeLessThan(.5);
+        }
+      }
+    }
+    expect(adjacentFrames, '包含足够连续绘制帧').toBeGreaterThan(30);
+    const content = page.locator(section === 'information' ? '.information-newsList' : '.operator-illust');
+    await expect.poll(() => content.evaluate(node => Number(getComputedStyle(node).opacity))).toBe(1);
+    if (section === 'information') {
+      await expect(page.getByRole('tab', { name: '新闻', exact: true })).toHaveAttribute('aria-selected', 'true');
+      await expect(page.locator('.information-newsItem .information-cate').first()).toHaveText('新闻');
+    } else {
+      const selected = await page.locator('.operator-charAvatar[aria-pressed="true"] .operator-charName').innerText();
+      await expect(page.locator('.operator-name')).toHaveText(selected);
+      await expect(content.locator('img')).toHaveAttribute('alt', new RegExp(`^${selected} 精英化`));
+    }
+  });
+}
+
 test('干员切换、精英化与本地语音', async ({ page }) => {
   await navigate(page, 'operator');
   for (const name of ['阿米娅', '陈', '德克萨斯', '能天使', '白面鸮', '凯尔希']) {

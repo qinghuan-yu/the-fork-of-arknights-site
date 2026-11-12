@@ -10,7 +10,7 @@
 | 六区切换 | `src/App.jsx`、`src/hooks/useSectionNavigation.js`、`src/styles.css` | 固定宽度的内容置于宽度变化的容器内，按前进/后退方向锚定边缘；桌面 1000ms、竖屏 600ms。不能改成同时淡入，否则会丢失原站揭幕和叠层关系。 |
 | 章节编号、坐标、网格、火花 | `src/components/SceneChrome.jsx`、`src/styles/scene.css` | 编号先退后入，300ms 动画并错开 100ms；Canvas 绘制原网格和火花。滚动提示保留循环运动。 |
 | 首页 | `src/sections/HomeSection.jsx`、`src/hooks/useHlsVideo.js` | 背景视频保留完整 18.125s 循环；原生 HLS 优先，轻量 HLS 回退。可见视频的 1.68→1.4 缩放等效于原站 Canvas 的 1.4 倍裁切与外层 1.2→1 入场缩放。两块蓝色遮罩延迟 2s、2.3s 出现。 |
-| 共用内容切换 | `src/components/ContentTransition.jsx` | 旧内容退出 300ms 后替换，再进入 300ms。支持水平、垂直、反向与 600ms 慢速模式；快速连点最终显示最后一次选择。纯淡入不覆盖元素自带的缩放。 |
+| 共用内容切换 | `src/components/ContentTransition.jsx` | 旧内容退出 300ms 后替换，再进入 300ms。退出末帧保持至 React 提交新内容；入场被打断时从当前透明度与位移继续退出。支持水平、垂直、反向与 600ms 慢速模式；快速连点最终显示最后一次选择，点回原项也会重新入场。纯淡入不覆盖元素自带的缩放。 |
 | 干员 | `src/sections/OperatorSection.jsx`、`BorderText.jsx`、`CharacterVoice.jsx` | 立绘/信息与剪影反向切换，立绘保留 10s 漂移；英文描边由 Canvas 生成。语言下拉、语音播放与白色到青色的波形均由前端驱动。 |
 | 世界观粒子 | `src/animations/ParticleScene.js`、`particleMath.js` | 10000 点、透视相机、原粒子贴图及模型；位置、深度、RGBA 逐帧收敛，包含鼠标斥力。离开时随机散开并淡出，2s 后停止循环。模型请求有缓存及过期请求保护。 |
 | 鼠标悬停形变 | `src/animations/WorldHover.js` | 100×100 细分平面追随鼠标；追随速度驱动顶点弯曲及 RGB 采样偏移。 |
@@ -22,6 +22,7 @@
 ## 状态和资源规则
 
 - `active` 控制播放及场景循环，`visible` 控制子页面进入/退出。不要在刚变为不可见时直接卸载，否则退出动画会再次消失。
+- 共用内容切换的退出动画不能在 `onfinish` 中立即取消；React 提交前取消会让旧内容闪回全亮。内容提交使用独立计数触发入场，避免快速点回原项时因 key 相同而跳过入场。
 - 图集和视频全屏通过 Portal 放入根节点。打开期间背景不可交互，背景音乐暂停；关闭后恢复原状态。
 - 粒子层放在全局 `#world-effects`，页面揭幕容器不能新增会改变全局叠层的 `clip-path` 或 `isolation`。
 - 默认音乐关闭，点击后播放，遵循浏览器自动播放限制。`prefers-reduced-motion` 缩短过渡并停止粒子运动；WebGL 不可用时显示静态设定图。
