@@ -3,6 +3,15 @@
   display: flex;
 }
 
+.header-nav .navigation-item {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.header-nav .navigation-item:focus-visible {
+  color: #19d1ff;
+}
+
 .navigation-container .navigation-item {
   margin: 0 2.5rem;
   cursor: pointer;

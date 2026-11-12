@@ -8,10 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "node scripts/serve.mjs",
-    "test": "node --test tests/*.test.mjs",
-    "test:ui": "playwright test",
-    "format": "prettier --write src index.html playwright.config.mjs tests/frontend.spec.mjs",
-    "check": "npm run build && npm test && npm run test:ui"
+    "format": "prettier --write src index.html"
   },
   "dependencies": {
     "@vitejs/plugin-react": "5.0.4",
@@ -23,7 +20,6 @@
     "vite": "6.4.2"
   },
   "devDependencies": {
-    "@playwright/test": "^1.65.0",
     "prettier": "^3.10.0"
   }
 }

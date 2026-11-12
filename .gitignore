@@ -1,11 +1,6 @@
 node_modules/
-.capture/
-source.html
 *.log
 dist/
-**/__pycache__/
-test-results/
-playwright-report/
 .env
 .env.*
 !.env.example
